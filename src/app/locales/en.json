@@ -1,0 +1,104 @@
+{
+  "home": "Home",
+  "projects": "Projects",
+  "contact": "Contact",
+  "book": "Book a Quick Session",
+  "followMe": "Follow me on social media:",
+  "rights": "All rights reserved © 2025 Ahmed Al-Mobayid",
+  "madeWithLove": "Made with love by Mahmoud Al Sharif",
+  "placeholder": "Ahmed@gmail.com",
+  
+  "hero": {
+    "architect": "Architect",
+    "planner": "Planner",
+    "architectDesc": "Specialized in innovative design and interior and exterior spaces focusing on ideas, details and implementation",
+    "plannerDesc": "Works on developing sustainable and beautiful designs, enriching the work of current companies with his passion for achieving the best work",
+    "label1": "Project Analysis",
+    "label2": "Creative",
+    "label3": "Modern",
+    "label4": "Project Development",
+    "label5": "Planner",
+    "label6": "Urban"
+  },
+  
+  "about": {
+    "title": "Engineer Ahmed Al-Mobayid: A Personal Journey and Inspiring Success Story in Design and Decor",
+    "description": "Engineer Ahmed Al-Mobayid, an architect specializing in interior design with a sustainable creative vision, has established himself as one of the leading designers and architectural planners. He has extensive experience in architectural design, interior decoration, and urban planning, making him a trusted reference in the field. He serves a diverse range of clients, from homeowners to large corporations, focusing on delivering innovative designs that combine beauty with authenticity and modernity.",
+    "cta": "Book a Quick Session",
+    "viewWork": "View Some of My Work",
+    "followMe": "Follow me on my official accounts:",
+    "badge1": "Sustainable Solutions",
+    "badge2": "Unlimited Innovation"
+  },
+  
+  "experience": {
+    "title": "A Personal Journey and Inspiring Success Story in Design and Decor",
+    "description": "Architect Ahmed Al-Mobayid, a specialist in interior design with a sustainable creative vision, has established himself as one of the leading designers and architectural planners.",
+    "stat1": "Complete Success",
+    "stat2": "Distinguished Design",
+    "stat3": "Satisfied Clients",
+    "stat4": "Years of Experience",
+    "cta": "Book a Quick Session",
+    "watchVideo": "Watch Video"
+  },
+  
+  "stats": {
+    "title": "A Journey of Creativity Told in Numbers",
+    "subtitle": "Since our launch, we have achieved great success in delivering innovative and high-quality architectural solutions, with our constant commitment to achieving customer satisfaction and exceeding their expectations.",
+    "stat1Value": "Billion",
+    "stat1Label": "Total value of our completed projects",
+    "stat1Sub": "With world-class quality standards",
+    "stat2Value": "2.50M+",
+    "stat2Label": "Square meters successfully planned and executed",
+    "stat2Sub": "Since 2018",
+    "stat3Value": "2500",
+    "stat3Label": "Happy families in their homes",
+    "stat3Sub": "Completely satisfied",
+    "cta": "Book a Quick Session"
+  },
+  
+  "beforeAfter": {
+    "title": "Transforming Inspiration into Reality: Before and After",
+    "description": "We enjoy every step of transforming spaces into places that reflect creativity and elegance. Through our projects, we provide you with a clear vision of how spaces transform from beginning to end, focusing on the small details that make the difference. We believe that every project tells a unique story, and we are here to turn your vision into tangible reality.",
+    "cta": "View More",
+    "before": "Before",
+    "after": "After"
+  },
+  
+  "testimonial": {
+    "subtitle": "An Engineer Who Translates Your Ideas into Reality",
+    "title": "15 Years of Architectural Creativity in Residential and Commercial",
+    "cta": "Book a Quick Session"
+  },
+  
+  "reviews": {
+    "subtitle": "2,157 people expressed their satisfaction with Engineer Ahmed's designs",
+    "title": "Our Happy Clients Share Their Experience with Us",
+    "cta": "Book a Quick Session with Me"
+  },
+  
+  "journey": {
+    "title": "Your Journey Map with Ahmed Al-Mobayid",
+    "subtitle": "From the first idea in your mind to the final achievement, we chart your project's path to success with utmost professionalism",
+    "readMore": "Read More"
+  },
+  
+  "partners": {
+    "title": "Corporate Websites",
+    "visionTitle": "Engineer Ahmed's Vision",
+    "visionText": "Transforms all your ideas into designs that express your taste with a professional style",
+    "missionTitle": "Engineer Ahmed's Mission",
+    "missionText": "I strive to design comfortable, elegant spaces that suit your personal needs"
+  },
+  
+  "contactPage": {
+    "title": "Book a Meeting",
+    "subtitle": "With Eng. Ahmed Al-Mobayid",
+    "services": "Planning . Design . Implementation . Consultations",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "submit": "Book Now in Two Minutes",
+    "privacy": "By clicking, you implicitly agree that we will contact you via email for information and updates. The information provided will be used securely"
+  }
+}
