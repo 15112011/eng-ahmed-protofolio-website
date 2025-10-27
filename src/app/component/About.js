@@ -32,7 +32,7 @@ export default function About() {
               {t.about.description}
             </Typography>
 
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 1.5, sm: 2 }, justifyContent: 'flex-end', alignItems: { xs: 'stretch', sm: 'center' }, pt: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', gap: { xs: 1.5, sm: 2 }, justifyContent: 'flex-end', alignItems: 'center', pt: 2 }}>
               <Button
                 component={Link}
                 href="/contact"

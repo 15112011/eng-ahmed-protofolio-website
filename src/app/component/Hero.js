@@ -53,7 +53,7 @@ export default function Hero() {
           <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4), transparent)', zIndex: 0 }} />
           
           {/* Compact Image - Mobile */}
-          <Box sx={{ position: 'relative', width: { xs: '350px', sm: '450px' }, height: { xs: '350px', sm: '450px' }, zIndex: 10 }}>
+          <Box sx={{ position: 'relative', width: { xs: '280px', sm: '400px' }, height: { xs: '280px', sm: '400px' }, zIndex: 10 }}>
             <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
               <Image
                 src="/images/eng img no bg.png"
@@ -89,44 +89,42 @@ export default function Hero() {
             href="/contact"
             sx={{
               position: 'absolute',
-              left: { xs: 12, sm: 24 },
-              top: '50%',
-              transform: 'translateY(-50%)',
+              left: { xs: 8, sm: 24 },
+              top: { xs: '35%', sm: '15%' },
+              transform: { xs: 'translateY(-50%)', sm: 'none' },
               zIndex: 20,
               cursor: 'pointer',
               textDecoration: 'none',
-              '&:hover .bg-layer': { transform: 'rotate(0deg)' },
-              '&:hover .text-layer': { transform: 'scale(1.1)' },
+              '&:hover .text-layer': { transform: 'scale(1.05)' },
             }}
           >
             <Box sx={{ position: 'relative' }}>
-              <Box
-                className="bg-layer"
-                sx={{
-                  position: 'absolute',
-                  inset: 0,
-                  bgcolor: 'rgba(255, 255, 255, 0.8)',
-                  backdropFilter: 'blur(4px)',
-                  borderRadius: 4,
-                  transform: 'rotate(-2deg)',
-                  transition: 'transform 0.3s',
-                }}
-              />
               <Typography
                 variant="h2"
                 className="text-layer"
                 sx={{
                   position: 'relative',
-                  fontSize: { xs: '1.5rem', sm: '1.875rem' },
+                  fontSize: { xs: '1.25rem', sm: '1.75rem' },
                   fontWeight: 700,
                   color: '#594534',
                   fontFamily: 'var(--font-cairo)',
-                  px: 2,
-                  py: 1.5,
+                  mb: { xs: 0.5, sm: 1 },
                   transition: 'transform 0.3s',
                 }}
               >
                 {t.hero.planner}
+              </Typography>
+              <Typography
+                sx={{
+                  position: 'relative',
+                  fontSize: { xs: '0.65rem', sm: '0.8rem' },
+                  color: 'rgba(89, 69, 52, 0.65)',
+                  fontFamily: 'var(--font-cairo)',
+                  maxWidth: { xs: '110px', sm: '140px' },
+                  lineHeight: 1.4,
+                }}
+              >
+                {t.hero.plannerDesc}
               </Typography>
             </Box>
           </Box>
@@ -137,43 +135,30 @@ export default function Hero() {
             href="/contact"
             sx={{
               position: 'absolute',
-              right: { xs: 12, sm: 24 },
-              top: '50%',
-              transform: 'translateY(-50%)',
+              right: { xs: 8, sm: 24 },
+              top: { xs: '35%', sm: '15%' },
+              transform: { xs: 'translateY(-50%)', sm: 'none' },
               zIndex: 20,
               textAlign: 'right',
               cursor: 'pointer',
               textDecoration: 'none',
-              '&:hover .bg-layer': { transform: 'rotate(0deg)' },
-              '&:hover .text-layer': { transform: 'scale(1.1)' },
+              '&:hover .text-layer': { transform: 'scale(1.05)' },
             }}
           >
             <Box sx={{ position: 'relative' }}>
-              <Box
-                className="bg-layer"
-                sx={{
-                  position: 'absolute',
-                  inset: 0,
-                  bgcolor: 'rgba(255, 255, 255, 0.8)',
-                  backdropFilter: 'blur(4px)',
-                  borderRadius: 4,
-                  transform: 'rotate(2deg)',
-                  transition: 'transform 0.3s',
-                }}
-              />
               <Typography
                 variant="h1"
                 className="text-layer"
                 sx={{
                   position: 'relative',
-                  fontSize: { xs: '1.5rem', sm: '1.875rem' },
+                  fontSize: { xs: '1.25rem', sm: '1.75rem' },
                   fontWeight: 700,
                   color: '#594534',
                   fontFamily: 'var(--font-cairo)',
                   lineHeight: 1.2,
-                  px: 2,
-                  py: 1.5,
+                  mb: { xs: 0.5, sm: 1 },
                   transition: 'transform 0.3s',
+                  textAlign: 'right',
                 }}
               >
                 {language === "ar" ? (
@@ -186,7 +171,57 @@ export default function Hero() {
                   t.hero.architect
                 )}
               </Typography>
+              <Typography
+                sx={{
+                  position: 'relative',
+                  fontSize: { xs: '0.65rem', sm: '0.8rem' },
+                  color: 'rgba(89, 69, 52, 0.65)',
+                  fontFamily: 'var(--font-cairo)',
+                  maxWidth: { xs: '110px', sm: '140px' },
+                  lineHeight: 1.4,
+                  textAlign: 'right',
+                }}
+              >
+                {t.hero.architectDesc}
+              </Typography>
             </Box>
+          </Box>
+
+          {/* Mobile Floating Labels - Around shoulders */}
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '8%', bottom: '38%', zIndex: 15 }}>
+            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+              {t.hero.label1}
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '15%', bottom: '30%', zIndex: 15 }}>
+            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+              {t.hero.label2}
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '5%', bottom: '24%', zIndex: 15 }}>
+            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+              {t.hero.label3}
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '8%', bottom: '38%', zIndex: 15 }}>
+            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+              {t.hero.label4}
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '12%', bottom: '30%', zIndex: 15 }}>
+            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+              {t.hero.label5}
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '18%', bottom: '23%', zIndex: 15 }}>
+            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+              {t.hero.label6}
+            </Typography>
           </Box>
         </Box>
 
@@ -268,7 +303,7 @@ export default function Hero() {
             height: '100%',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            pr: { md: 2, lg: 4, xl: 6 },
+            pr: { md: 8, lg: 12, xl: 16 },
             cursor: 'pointer',
             zIndex: 0,
             transition: 'all 0.5s ease-out',
@@ -338,7 +373,7 @@ export default function Hero() {
             height: '100%',
             alignItems: 'center',
             justifyContent: 'flex-start',
-            pl: { md: 2, lg: 4, xl: 6 },
+            pl: { md: 8, lg: 12, xl: 16 },
             cursor: 'pointer',
             zIndex: 0,
             transition: 'all 0.5s ease-out',

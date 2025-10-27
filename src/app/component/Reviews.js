@@ -27,6 +27,14 @@ export default function Reviews() {
   const visibleReviews = isMobile ? 1 : 3;
   const maxSlide = reviews.length - visibleReviews;
 
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev > 0 ? prev - 1 : maxSlide));
+  };
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev < maxSlide ? prev + 1 : 0));
+  };
+
   // Gradient glow colors based on user specification
   const glowGradients = [
     'linear-gradient(135deg, #44FF9A 0%, #44B0FF 23%, #8B44FF 49%, #FF6644 74%, #EBFF70 100%)',
@@ -101,6 +109,86 @@ export default function Reviews() {
               pointerEvents: 'none',
             }}
           />
+
+          {/* Previous Arrow - Positioned on the left */}
+          <Box
+            component="button"
+            onClick={handlePrev}
+            sx={{
+              position: 'absolute',
+              right: { xs: '4%', md: '-60px' },
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: { xs: 40, sm: 48 },
+              height: { xs: 40, sm: 48 },
+              borderRadius: '50%',
+              bgcolor: '#FFD700',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.3s',
+              '&:hover': { transform: 'translateY(-50%) scale(1.1)', boxShadow: '0 4px 12px rgba(255, 215, 0, 0.4)' },
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              zIndex: 10,
+            }}
+            aria-label="Previous slide"
+          >
+            <Box component="svg" sx={{ width: 20, height: 20, color: '#594534' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+            </Box>
+            {/* White circle accent */}
+            <Box sx={{
+              position: 'absolute',
+              right: -4,
+              width: 12,
+              height: 12,
+              borderRadius: '50%',
+              bgcolor: 'white',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            }} />
+          </Box>
+
+          {/* Next Arrow - Positioned on the right */}
+          <Box
+            component="button"
+            onClick={handleNext}
+            sx={{
+              position: 'absolute',
+              left: { xs: '4%', md: '-60px' },
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: { xs: 40, sm: 48 },
+              height: { xs: 40, sm: 48 },
+              borderRadius: '50%',
+              bgcolor: '#FFD700',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.3s',
+              '&:hover': { transform: 'translateY(-50%) scale(1.1)', boxShadow: '0 4px 12px rgba(255, 215, 0, 0.4)' },
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              zIndex: 10,
+            }}
+            aria-label="Next slide"
+          >
+            <Box component="svg" sx={{ width: 20, height: 20, color: '#594534' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </Box>
+            {/* White circle accent */}
+            <Box sx={{
+              position: 'absolute',
+              left: -4,
+              width: 12,
+              height: 12,
+              borderRadius: '50%',
+              bgcolor: 'white',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            }} />
+          </Box>
           <Box sx={{ overflow: 'visible' }}>
             <Box
               sx={{
