@@ -1,0 +1,102 @@
+{
+  "home": "Home",
+  "projects": "Projects",
+  "contact": "Contact",
+  "book": "Book a Quick Session",
+  "followMe": "Follow me on my official accounts:",
+  "rights": "All rights reserved © 2025 Ahmed Al-Mubayed",
+  "madeWithLove": "Made with love by Mahmoud Al Sharif",
+  "placeholder": "Ahmed@gmail.com",
+  
+  "hero": {
+    "architect": "Artect",
+    "planner": "Planner",
+    "architectDesc": "Specialized in innovative design and interior/exterior spaces with attention to ideas, details, and implementation",
+    "plannerDesc": "Works on developing sustainable and beautiful designs and enriches existing companies’ work with his passion for delivering the best results",
+    "label1": "Project Analysis",
+    "label2": "Creative",
+    "label3": "Modern",
+    "label4": "Project Development",
+    "label5": "Planner",
+    "label6": "Urban"
+  },
+  
+  "about": {
+    "title": "Engineer Ahmed Al-Mubayed: Personal Experience and an Inspirational Success Story in Design and Decoration",
+    "description": "Engineer Ahmed Al-Mubayed, an architect specializing in interior design, has a creative and sustainable vision and has established himself as one of the leading architects and planners. He has extensive experience in architectural design, interior decoration, and urban planning, making him a trusted reference in the field. He offers his services to a diverse range of clients, from private homeowners to large companies, focusing on innovative designs that combine beauty, authenticity, and modernity.",
+    "cta": "Book a Quick Session",
+    "viewWork": "See Some of My Work",
+    "followMe": "Follow me on my official accounts:",
+    "badge1": "Sustainable Solutions",
+    "badge2": "Unlimited Creativity"
+  },
+  
+  "experience": {
+    "titleSub": "Personal Experience & Inspirational Success Story in Design and Decoration",
+    "description": "Architect Ahmed Al-Mubayed presents a model of an entrepreneur who turned negative evaluation into a starting point. After being dismissed from a major consultancy firm for being 'unsuccessful' in design, Al-Mubayed founded three specialized companies: 'Dream Studio' (Design), 'Decor Stores' (Furniture), and 'VFX' (Visual Effects).",
+    "description2": "His quantitative achievements show his broad impact, having designed over 1,000 villas and achieved one billion views on social media, proving that professional challenges can motivate entrepreneurial success in design and creativity.",
+    "stat3": "Success Story",
+    "stat1": "Interior Design",
+    "stat2": "Decor Tips",
+    "stat4": "Entrepreneurship",
+    "cta": "Book a Quick Session",
+    "watchVideo": "Watch Video"
+  },
+  
+  "stats": {
+    "title": "A Journey of Creativity Told in Numbers",
+    "subtitle": "Since our launch, we have achieved great success in delivering innovative and high-quality architectural solutions, always committed to exceeding client expectations.",
+    "stat1Value": "Billion",
+    "stat1Label": "Total channel views on social media platforms",
+    "stat2Value": "2.50M",
+    "stat2Label": "Social media followers in 2025",
+    "stat3Value": "2500",
+    "stat3Label": "Total executed projects",
+    "cta": "Book a Quick Session"
+  },
+  
+  "beforeAfter": {
+    "title": "Turning Inspiration into Reality: Before & After",
+    "description": "We enjoy every step of transforming spaces into places that reflect creativity and elegance. Through our projects, we provide a clear vision of how spaces evolve from start to finish, focusing on the small details that make a difference. We believe each project tells a unique story, and we are here to turn your vision into tangible reality.",
+    "cta": "Book a Quick Session",
+    "before": "Before",
+    "after": "After"
+  },
+  
+  "testimonial": {
+    "subtitle": "An Engineer Who Translates Your Ideas into Reality",
+    "title": "15 Years of Architectural Creativity in Residential and Commercial Projects",
+    "cta": "Book a Quick Session"
+  },
+  
+  "reviews": {
+    "subtitle": "2,157 people expressed their satisfaction with Engineer Ahmed’s designs",
+    "title": "Our Happy Clients Share Their Experience With Us",
+    "cta": "Book a Quick Session with Me"
+  },
+  
+  "journey": {
+    "title": "Your Journey Map with Ahmed Al-Mubayed",
+    "subtitle": "From the first idea in your mind to the final completion, we map the success path of your project professionally",
+    "readMore": "Read More"
+  },
+  
+  "partners": {
+    "title": "My Company Websites",
+    "visionTitle": "Ahmed’s Vision",
+    "visionText": "Turning all your ideas into designs that reflect your taste professionally",
+    "missionTitle": "Ahmed’s Mission",
+    "missionText": "I aim to design comfortable and elegant spaces that meet your personal needs"
+  },
+  
+  "contactPage": {
+    "title": "Book a Meeting",
+    "subtitle": "with Eng. Ahmed Al-Mubayed",
+    "services": "Planning . Design . Execution . Consultation",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "submit": "Book Now in 2 Minutes",
+    "privacy": "By clicking, you implicitly agree to be contacted via email for information and updates. Provided information will be used securely."
+  }
+}

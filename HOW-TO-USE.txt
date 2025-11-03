@@ -1,0 +1,98 @@
+🚀 QUICK GUIDE - How to Use Your Website
+==========================================
+
+Hey! Your website is ready to go. Here's how to customize it:
+
+📁 THE MAIN FILE YOU NEED TO EDIT:
+----------------------------------
+src/app/data/siteData.js
+
+This is your "fake database" - everything you see on the website comes from here.
+No need to touch any other files unless you want to change the design.
+
+🔧 HOW TO CHANGE CONTENT:
+-------------------------
+1. Open: src/app/data/siteData.js
+2. Find the section you want to change
+3. Edit the text (both English and Arabic)
+4. Save the file
+5. Refresh your browser - changes appear instantly!
+
+Example sections you can edit:
+- siteConfig (contact info, social media)
+- heroData (main titles, descriptions)
+- statsData (your numbers and achievements)
+- testimonialsData (client reviews)
+- corporateWebsitesData (your services)
+- journeyMapData (your work process)
+
+🖼️ HOW TO CHANGE IMAGES:
+------------------------
+1. Put your new images in: public/images/
+2. In siteData.js, change the image paths like:
+   image: "/images/your-new-image.jpg"
+
+Common images to replace:
+- Hero images: /images/eng img no bg.png
+- Background: /images/0a76d4007f8cc7694c998df6b10dfe65cd978952.jpg
+- Client photos: /images/client1.jpg, /images/client2.jpg, etc.
+- Project images: /images/project1.jpg, /images/website1.jpg, etc.
+
+🧪 TEST YOUR CHANGES:
+--------------------
+Visit these pages to see if everything works:
+
+1. Main website: http://localhost:3002
+2. Test your changes: http://localhost:3002/test-changes
+3. All sections demo: http://localhost:3002/test-sections
+
+💡 QUICK TIPS:
+--------------
+- Always keep both English (en) and Arabic (ar) versions
+- Don't delete the structure, just change the content
+- Image files should be .jpg, .png, or .webp
+- Keep image names simple (no spaces or special characters)
+
+🔥 COMMON CHANGES YOU'LL WANT TO MAKE:
+--------------------------------------
+
+1. YOUR INFO:
+   - Line ~26: email: "your-email@gmail.com"
+   - Line ~27: phone: "+966 XX XXX XXXX"
+   - Lines 34-38: social media links
+
+2. HERO SECTION:
+   - Lines 65-73: architect/planner titles
+   - Lines 75-85: descriptions
+   - Lines 87-90: floating labels
+
+3. STATISTICS:
+   - Lines 110-140: your numbers and achievements
+
+4. TESTIMONIALS:
+   - Lines 256-332: client reviews and info
+
+5. YOUR SERVICES:
+   - Lines 349-398: website features you offer
+
+6. WORK PROCESS:
+   - Lines 439-637: your 7-step process
+
+🚨 IF SOMETHING BREAKS:
+----------------------
+1. Check the browser console (F12) for errors
+2. Make sure you didn't accidentally delete a comma or bracket
+3. Run: npm run lint (to check for errors)
+4. Compare with the original file structure
+
+🎯 FINAL STEPS:
+--------------
+1. Replace all placeholder images with your real photos
+2. Update all text content to match your business
+3. Test on mobile and desktop
+4. Deploy to your hosting provider
+
+That's it! Your website is now fully customizable through one simple file.
+No coding knowledge needed - just edit the text and image paths! 
+
+Good luck! 🎉
