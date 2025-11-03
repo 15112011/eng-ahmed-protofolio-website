@@ -89,7 +89,7 @@ export default function Hero() {
 
   return (
     // Main Hero Section Container - Full viewport height on desktop, auto on mobile
-    <Box component="section" sx={{ position: 'relative', width: '100%', height: { xs: 'auto', md: '100vh' }, overflow: 'hidden', minHeight: { xs: 'auto', md: '100vh' } }}>
+    <Box component="section" sx={{ position: 'relative', width: '100%', height: { xs: 'auto', md: '70vh' }, overflow: 'hidden', minHeight: { xs: '400px', md: '70vh' }, mt: { xs: '80px', md: '90px' } }}>
       
       {/* Background Layer - Scaled and overlaid background image */}
       <Box sx={{ position: 'absolute', inset: 0, zIndex: 0 }}>
@@ -106,7 +106,7 @@ export default function Hero() {
 
       <Box sx={{ position: 'relative', height: { xs: 'auto', md: '100%' }, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: { xs: 'flex-start', md: 'center' }, justifyContent: 'center' }}>
         {/* Mobile Layout - Enhanced with gradient background */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' }, position: 'relative', width: '100%', alignItems: 'flex-end', justifyContent: 'center', pb: 0, pt: { xs: 0, sm: 1 } }}>
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, position: 'relative', width: '100%', alignItems: 'flex-end', justifyContent: 'center', pb: 0, pt: 0 }}>
           {/* Gradient Background Overlay */}
           <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4), transparent)', zIndex: 0 }} />
           
