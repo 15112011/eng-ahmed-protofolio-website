@@ -3,12 +3,11 @@ import { useState } from "react";
 import Image from "next/image";
 import { Box, Typography, TextField, Button, IconButton } from "@mui/material";
 import { useLanguage } from "../hooks/useLanguage";
-import ar from "../locales/ar.json";
-import en from "../locales/en.json";
+import { useSiteData } from "../hooks/useSiteData";
 
 export default function ContactPage() {
   const { language } = useLanguage();
-  const t = language === "ar" ? ar : en;
+  const { contactPage } = useSiteData();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -30,7 +29,7 @@ export default function ContactPage() {
   };
 
   return (
-    <Box component="main" sx={{ minHeight: "100vh", bgcolor: "white", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <Box component="main" sx={{ minHeight: "100vh", bgcolor: "#f8f6f3", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <Box
         sx={{
           position: "relative",
@@ -38,10 +37,10 @@ export default function ContactPage() {
           flexDirection: { xs: "column", lg: "row" },
           alignItems: "center",
           justifyContent: "center",
-          maxWidth: { xs: "100%", lg: "1100px" },
+          maxWidth: { xs: "100%", lg: "1200px" },
           width: "100%",
           mx: "auto",
-          py: { xs: 6, lg: 12 },
+          py: { xs: 6, lg: 8 },
           px: { xs: 2, md: 4 },
         }}
       >
@@ -49,14 +48,15 @@ export default function ContactPage() {
         <Box
           sx={{
             position: "relative",
-            width: { xs: "100%", lg: "750px" },
-            height: { xs: 420, lg: 690 },
-            borderRadius: 3,
+            width: { xs: "100%", lg: "850px" },
+            height: { xs: 420, lg: 700 },
+            borderRadius: 0,
             overflow: "hidden",
             bgcolor: "black",
             zIndex: 1,
             marginBottom: { xs: 5, lg: 0 },
-            marginLeft: { lg: "-220px" },
+            marginRight: { lg: "-150px" },
+            boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
           }}
         >
           <Image
@@ -100,17 +100,16 @@ export default function ContactPage() {
         {/* 📝 الفورم */}
         <Box
           sx={{
-            position: { xs: "relative", lg: "absolute" },
-            right: { lg: "1%" },
-            top: { lg: "50%" },
-            transform: { lg: "translateY(-50%)" },
-            width: { xs: "100%", lg: 440 },
+            position: { xs: "relative", lg: "relative" },
+            width: { xs: "100%", lg: "480px" },
             bgcolor: "white",
-            borderRadius: 4,
-            p: { xs: 4, md: 5 },
-            boxShadow: "0 8px 30px rgba(0,0,0,0.15)",
-            border: "1px solid #eee",
+            borderRadius: { xs: 3, lg: 4 },
+            p: { xs: 4, md: 6 },
+            boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
+            border: "1px solid rgba(139, 115, 85, 0.1)",
             zIndex: 2,
+            ml: { lg: "-80px" },
+            mt: { xs: "-60px", lg: 0 },
           }}
         >
           <Typography
@@ -124,7 +123,7 @@ export default function ContactPage() {
               fontFamily: "var(--font-cairo)",
             }}
           >
-            {t.contactPage.title}
+            {contactPage?.title}
           </Typography>
 
           <Typography
@@ -137,7 +136,7 @@ export default function ContactPage() {
               fontFamily: "var(--font-cairo)",
             }}
           >
-            {t.contactPage.subtitle}
+            {contactPage?.subtitle}
           </Typography>
 
           <Typography
@@ -148,7 +147,7 @@ export default function ContactPage() {
               textAlign: "right",
             }}
           >
-            {t.contactPage.services}
+            {contactPage?.services}
           </Typography>
 
           {/* 🧾 الفورم الداخلي */}
@@ -167,7 +166,7 @@ export default function ContactPage() {
                   mb: 1,
                 }}
               >
-                {t.contactPage.name}
+                {contactPage?.name}
               </Typography>
               <TextField
                 type="text"
@@ -203,7 +202,7 @@ export default function ContactPage() {
                   mb: 1,
                 }}
               >
-                {t.contactPage.phone}
+                {contactPage?.phone}
               </Typography>
               <TextField
                 type="tel"
@@ -239,7 +238,7 @@ export default function ContactPage() {
                   mb: 1,
                 }}
               >
-                {t.contactPage.email}
+                {contactPage?.email}
               </Typography>
               <TextField
                 type="email"
@@ -284,7 +283,7 @@ export default function ContactPage() {
                 fontSize: "1rem",
               }}
             >
-              <span>{t.contactPage.submit}</span>
+              <span>{contactPage?.submit}</span>
             </Button>
 
             {/* الملاحظة */}
@@ -296,7 +295,7 @@ export default function ContactPage() {
                 lineHeight: 1.6,
               }}
             >
-              {t.contactPage.privacy}
+              {contactPage?.privacy}
             </Typography>
           </Box>
         </Box>

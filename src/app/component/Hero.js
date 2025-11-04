@@ -27,6 +27,9 @@ export default function Hero() {
   const [revealPercentage, setRevealPercentage] = useState(50) // Controls image split reveal (0-100%)
   const [isAnimating, setIsAnimating] = useState(true) // Controls initial slide-in animation
   const [sideHover, setSideHover] = useState("none") // Tracks which side is hovered: "none", "left", "right"
+  const [showText, setShowText] = useState(false) // Controls text visibility after animation
+  const [showFloatingLabels, setShowFloatingLabels] = useState(false) // Controls floating labels visibility
+  const [isInView, setIsInView] = useState(false) // Tracks if Hero section is in viewport
   
   // Refs and language setup
   const heroRef = useRef(null) // Reference to hero container for mouse tracking
@@ -39,21 +42,74 @@ export default function Hero() {
    * Automatically disables animation state after 2 seconds to allow interactive effects
    */
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsAnimating(false) // Enable interactive mouse tracking after initial animation
-    }, 2000) // 1.5s animation + 0.5s buffer
+    const animationTimer = setTimeout(() => {
+      setIsAnimating(false) // Enable interactive mouse tracking after collision animation
+    }, 4200) // 4s animation + 0.2s buffer
 
-    return () => clearTimeout(timer) // Cleanup timer on unmount
+    const textTimer = setTimeout(() => {
+      setShowText(true) // Show text after animation completes
+    }, 4400) // Show text 200ms after collision animation ends
+
+    const labelsTimer = setTimeout(() => {
+      setShowFloatingLabels(true) // Show floating labels 2s after animation ends
+    }, 6400) // Show labels 2s after collision animation ends (4.2s + 2s)
+
+    return () => {
+      clearTimeout(animationTimer)
+      clearTimeout(textTimer)
+      clearTimeout(labelsTimer)
+    } // Cleanup timers on unmount
   }, [])
 
   /**
-   * Handles mouse movement over the hero image for interactive reveal effect
-   * Creates a dynamic split between color and cartoon versions of the image
+   * Intersection Observer to detect when Hero section is in viewport
+   * Only allows animations and interactions when section is visible
+   */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+        // When coming into view, show full image immediately
+        if (entry.isIntersecting) {
+          setRevealPercentage(50) // Show balanced state immediately
+        }
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of hero is visible
+        rootMargin: '0px'
+      }
+    )
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current)
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current)
+      }
+    }
+  }, [])
+
+  /**
+   * Handles mouse movement over the hero section
+   * Controls the reveal percentage and text visibility based on mouse position
+   * Images stay stable at 50% until they touch, then slow animation when close to colliding
    * 
-   * @param {MouseEvent} e - Mouse event containing cursor position
+   * @param {MouseEvent} e - Mouse event object
    */
   const handleMouseMove = (e) => {
     if (!heroRef.current) return
+    
+    // Only allow interactions when Hero section is in viewport
+    if (!isInView) {
+      return
+    }
+    
+    // Don't update during collision animation to prevent percentage changes
+    if (isAnimating) {
+      return
+    }
     
     // Get mouse position relative to hero container
     const rect = heroRef.current.getBoundingClientRect()
@@ -61,21 +117,46 @@ export default function Hero() {
     const percentage = (x / rect.width) * 100
     
     // Invert percentage for intuitive left-right reveal behavior
-    // Left side shows more cartoon, right side shows more color
     let invertedPercentage = 100 - percentage
     
-    // Create dead zone in center (45-55%) for stable middle position
-    const deadZoneStart = 45
-    const deadZoneEnd = 55
-    const deadZoneCenter = 50
+    // Define zones for different behaviors
+    const stableZoneStart = 25
+    const stableZoneEnd = 75
+    const slowZoneStart = 15  // Start slowing down here
+    const slowZoneEnd = 85    // Start slowing down here
     
-    if (invertedPercentage >= deadZoneStart && invertedPercentage <= deadZoneEnd) {
-      invertedPercentage = deadZoneCenter // Snap to center in dead zone
+    // If in stable zone (25-75%), keep at 50%
+    if (invertedPercentage >= stableZoneStart && invertedPercentage <= stableZoneEnd) {
+      invertedPercentage = 50 // Keep perfectly stable at 50%
+    }
+    // If in slow zones (15-25% or 75-85%), apply dramatic slowdown
+    else if ((invertedPercentage >= slowZoneStart && invertedPercentage < stableZoneStart) || 
+             (invertedPercentage > stableZoneEnd && invertedPercentage <= slowZoneEnd)) {
+      
+      // Use requestAnimationFrame for smooth slow animation
+      const targetPercentage = invertedPercentage
+      const currentPercentage = revealPercentage
+      
+      // Extremely slow interpolation (99% slower)
+      const slowFactor = 0.01 // 1% of normal speed
+      const difference = targetPercentage - currentPercentage
+      invertedPercentage = currentPercentage + (difference * slowFactor)
     }
     
     // Ensure percentage stays within valid bounds (0-100%)
     const clampedPercentage = Math.max(0, Math.min(100, invertedPercentage))
+    
     setRevealPercentage(clampedPercentage)
+    
+    // Update side hover state based on position for text visibility
+    // Text vanishes when reaching 80-85% to one side
+    if (percentage < 15) {
+      setSideHover("left")
+    } else if (percentage > 85) {
+      setSideHover("right")
+    } else {
+      setSideHover("none")
+    }
   }
 
   /**
@@ -104,7 +185,11 @@ export default function Hero() {
         <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(255, 255, 255, 0.7)' }} />
       </Box>
 
-      <Box sx={{ position: 'relative', height: { xs: 'auto', md: '100%' }, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: { xs: 'flex-start', md: 'center' }, justifyContent: 'center' }}>
+      <Box 
+        ref={heroRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        sx={{ position: 'relative', height: { xs: 'auto', md: '100%' }, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: { xs: 'flex-start', md: 'center' }, justifyContent: 'center' }}>
         {/* Mobile Layout - Enhanced with gradient background */}
         <Box sx={{ display: { xs: 'flex', md: 'none' }, position: 'relative', width: '100%', alignItems: 'flex-end', justifyContent: 'center', pb: 0, pt: 0 }}>
           {/* Gradient Background Overlay */}
@@ -120,9 +205,11 @@ export default function Hero() {
                   inset: 0,
                   clipPath: 'inset(0 50% 0 0)', // Always show left 50%
                   transform: isAnimating ? 'translateX(-100%)' : 'translateX(0)',
+                  opacity: isAnimating ? 0 : 1,
                   transition: isAnimating 
-                    ? 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)' 
-                    : 'transform 0.3s ease-out',
+                    ? 'transform 4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in' 
+                    : 'transform 0.3s ease-out, opacity 0.3s ease-out',
+                  animationDelay: isAnimating ? '0s' : '0s',
                 }}
               >
                 <Image
@@ -140,9 +227,10 @@ export default function Hero() {
                   inset: 0,
                   clipPath: 'inset(0 0 0 50%)', // Always show right 50%
                   transform: isAnimating ? 'translateX(100%)' : 'translateX(0)',
+                  opacity: isAnimating ? 0 : 1,
                   transition: isAnimating 
-                    ? 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)' 
-                    : 'transform 0.3s ease-out',
+                    ? 'transform 4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in' 
+                    : 'transform 0.3s ease-out, opacity 0.3s ease-out',
                   pointerEvents: 'none',
                 }}
               >
@@ -277,9 +365,6 @@ export default function Hero() {
 
         {/* Desktop Image - Full width with mouse tracking */}
         <Box 
-          ref={heroRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
           sx={{ 
             display: { xs: 'none', md: 'block' }, 
             position: 'absolute', 
@@ -292,20 +377,22 @@ export default function Hero() {
             maxWidth: '1400px', 
             zIndex: 10,
             cursor: 'default',
-            transition: 'transform 0.3s ease-out',
+            transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            pointerEvents: 'none',
           }}
         >
           <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
-            {/* Base Image - Color - Always fully visible after animation */}
+            {/* Base Image - Color - Slides in from completely off-screen left */}
             <Box
               sx={{
                 position: 'absolute',
                 inset: 0,
                 clipPath: isAnimating ? 'inset(0 100% 0 0)' : 'inset(0 0 0 0)',
                 transform: isAnimating ? 'translateX(-100%)' : 'translateX(0)',
+                opacity: isAnimating ? 0 : 1,
                 transition: isAnimating 
-                  ? 'clip-path 1.5s cubic-bezier(0.65, 0, 0.35, 1), transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)' 
-                  : 'clip-path 0.3s ease-out, transform 0.3s ease-out',
+                  ? 'clip-path 4s cubic-bezier(0.25, 0.1, 0.25, 1), transform 4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in' 
+                  : 'clip-path 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease-out',
               }}
             >
               <Image
@@ -317,7 +404,7 @@ export default function Hero() {
               />
             </Box>
 
-            {/* Cartoon Overlay - Right Half slides in from right */}
+            {/* Cartoon Overlay - Slides in from completely off-screen right */}
             <Box
               sx={{
                 display: { xs: 'none', md: 'block' },
@@ -325,9 +412,10 @@ export default function Hero() {
                 inset: 0,
                 clipPath: isAnimating ? 'inset(0 0 0 100%)' : `inset(0 0 0 ${revealPercentage}%)`,
                 transform: isAnimating ? 'translateX(100%)' : 'translateX(0)',
+                opacity: isAnimating ? 0 : 1,
                 transition: isAnimating 
-                  ? 'clip-path 1.5s cubic-bezier(0.65, 0, 0.35, 1), transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)' 
-                  : 'clip-path 0.3s ease-out, transform 0.3s ease-out',
+                  ? 'clip-path 4s cubic-bezier(0.25, 0.1, 0.25, 1), transform 4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1s ease-in' 
+                  : 'clip-path 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease-out',
                 pointerEvents: "none",
               }}
             >
@@ -341,25 +429,25 @@ export default function Hero() {
             </Box>
 
           </Box>
+
         </Box>
 
         {/* Right Side - مهندس معماري */}
         <Box
           component={Link}
           href="/contact"
-          onMouseEnter={() => setSideHover("right")}
-          onMouseLeave={() => setSideHover("none")}
           sx={{
             display: { xs: 'none', md: 'flex' },
             position: 'absolute',
             right: 0,
             top: 0,
             height: '100%',
+            width: '40%',
             alignItems: 'center',
             justifyContent: 'flex-end',
             pr: { md: 8, lg: 12, xl: 16 },
             cursor: 'pointer',
-            zIndex: 0,
+            zIndex: 20,
             textDecoration: 'none',
           }}
         >
@@ -370,8 +458,11 @@ export default function Hero() {
               flexDirection: 'column',
               gap: { md: 1.5, lg: 2 },
               maxWidth: { md: '20rem', lg: '28rem' },
-              opacity: sideHover === "left" ? 0.3 : 1,
-              transition: 'opacity 0.4s ease-in-out',
+              opacity: !showText ? 0 : (sideHover === "left" ? 0 : 1),
+              transform: !showText ? 'translateY(20px)' : 'translateY(0)',
+              transition: showText 
+                ? 'opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                : 'opacity 0.3s ease-out, transform 0.3s ease-out',
             }}
           >
             <Typography
@@ -414,14 +505,13 @@ export default function Hero() {
         <Box
           component={Link}
           href="/contact"
-          onMouseEnter={() => setSideHover("left")}
-          onMouseLeave={() => setSideHover("none")}
           sx={{
             display: { xs: 'none', md: 'flex' },
             position: 'absolute',
             left: 0,
             top: 0,
             height: '100%',
+            width: '40%',
             alignItems: 'center',
             justifyContent: 'flex-start',
             pl: { md: 8, lg: 12, xl: 16 },
@@ -437,8 +527,11 @@ export default function Hero() {
               flexDirection: 'column',
               gap: { md: 1.5, lg: 2 },
               maxWidth: { md: '20rem', lg: '28rem' },
-              opacity: sideHover === "right" ? 0.3 : 1,
-              transition: 'opacity 0.4s ease-in-out',
+              opacity: !showText ? 0 : (sideHover === "right" ? 0 : 1),
+              transform: !showText ? 'translateY(20px)' : 'translateY(0)',
+              transition: showText 
+                ? 'opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                : 'opacity 0.3s ease-out, transform 0.3s ease-out',
             }}
           >
             <Typography
@@ -472,42 +565,102 @@ export default function Hero() {
         {/* Scattered Floating Labels - Bottom section around shoulders with tilt */}
         
         {/* Label 1 - Right shoulder area */}
-        <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'absolute', right: '28%', bottom: '35%', zIndex: 15, transform: 'rotate(-3deg)' }}>
+        <Box sx={{ 
+          display: { xs: 'none', md: 'block' }, 
+          position: 'absolute', 
+          right: '28%', 
+          bottom: '35%', 
+          zIndex: 15, 
+          transform: showFloatingLabels ? `rotate(-3deg) translateY(0) translateX(${sideHover === 'right' ? '8px' : '0'})` : 'rotate(-3deg) translateY(15px)',
+          opacity: !showFloatingLabels ? 0 : (sideHover === "left" ? 0 : 1),
+          transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transitionDelay: '0.1s'
+        }}>
           <Typography sx={{ fontSize: { md: '0.9rem', lg: '1.05rem' }, color: 'rgba(89, 69, 52, 0.75)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
             {hero.floatingLabels?.[0] || t.hero?.label1 || "Label 1"}
           </Typography>
         </Box>
 
         {/* Label 2 - Right mid area */}
-        <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'absolute', right: '24%', bottom: '28%', zIndex: 15, transform: 'rotate(2deg)' }}>
+        <Box sx={{ 
+          display: { xs: 'none', md: 'block' }, 
+          position: 'absolute', 
+          right: '24%', 
+          bottom: '28%', 
+          zIndex: 15, 
+          transform: showFloatingLabels ? `rotate(2deg) translateY(0) translateX(${sideHover === 'right' ? '12px' : '0'})` : 'rotate(2deg) translateY(15px)',
+          opacity: !showFloatingLabels ? 0 : (sideHover === "left" ? 0 : 1),
+          transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transitionDelay: '0.3s'
+        }}>
           <Typography sx={{ fontSize: { md: '0.9rem', lg: '1.05rem' }, color: 'rgba(89, 69, 52, 0.75)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
             {hero.floatingLabels?.[1] || t.hero?.label2 || "Label 2"}
           </Typography>
         </Box>
 
         {/* Label 3 - Right lower area */}
-        <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'absolute', right: '30%', bottom: '20%', zIndex: 15, transform: 'rotate(-5deg)' }}>
+        <Box sx={{ 
+          display: { xs: 'none', md: 'block' }, 
+          position: 'absolute', 
+          right: '30%', 
+          bottom: '20%', 
+          zIndex: 15, 
+          transform: showFloatingLabels ? `rotate(-5deg) translateY(0) translateX(${sideHover === 'right' ? '6px' : '0'})` : 'rotate(-5deg) translateY(15px)',
+          opacity: !showFloatingLabels ? 0 : (sideHover === "left" ? 0 : 1),
+          transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transitionDelay: '0.5s'
+        }}>
           <Typography sx={{ fontSize: { md: '0.9rem', lg: '1.05rem' }, color: 'rgba(89, 69, 52, 0.75)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
             {hero.floatingLabels?.[2] || t.hero?.label3 || "Label 3"}
           </Typography>
         </Box>
 
         {/* Label 4 - Left shoulder area */}
-        <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'absolute', left: '28%', bottom: '36%', zIndex: 15, transform: 'rotate(4deg)' }}>
+        <Box sx={{ 
+          display: { xs: 'none', md: 'block' }, 
+          position: 'absolute', 
+          left: '28%', 
+          bottom: '36%', 
+          zIndex: 15, 
+          transform: showFloatingLabels ? `rotate(4deg) translateY(0) translateX(${sideHover === 'left' ? '-8px' : '0'})` : 'rotate(4deg) translateY(15px)',
+          opacity: !showFloatingLabels ? 0 : (sideHover === "right" ? 0 : 1),
+          transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transitionDelay: '0.2s'
+        }}>
           <Typography sx={{ fontSize: { md: '0.9rem', lg: '1.05rem' }, color: 'rgba(89, 69, 52, 0.75)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
             {hero.floatingLabels?.[3] || t.hero?.label4 || "Label 4"}
           </Typography>
         </Box>
 
         {/* Label 5 - Left mid area */}
-        <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'absolute', left: '24%', bottom: '27%', zIndex: 15, transform: 'rotate(-2deg)' }}>
+        <Box sx={{ 
+          display: { xs: 'none', md: 'block' }, 
+          position: 'absolute', 
+          left: '24%', 
+          bottom: '27%', 
+          zIndex: 15, 
+          transform: showFloatingLabels ? `rotate(-2deg) translateY(0) translateX(${sideHover === 'left' ? '-12px' : '0'})` : 'rotate(-2deg) translateY(15px)',
+          opacity: !showFloatingLabels ? 0 : (sideHover === "right" ? 0 : 1),
+          transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transitionDelay: '0.4s'
+        }}>
           <Typography sx={{ fontSize: { md: '0.9rem', lg: '1.05rem' }, color: 'rgba(89, 69, 52, 0.75)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
             {hero.floatingLabels?.[4] || t.hero?.label5 || "Label 5"}
           </Typography>
         </Box>
 
         {/* Label 6 - Left lower area */}
-        <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'absolute', left: '20%', bottom: '18%', zIndex: 15, transform: 'rotate(6deg)' }}>
+        <Box sx={{ 
+          display: { xs: 'none', md: 'block' }, 
+          position: 'absolute', 
+          left: '20%', 
+          bottom: '18%', 
+          zIndex: 15, 
+          transform: showFloatingLabels ? `rotate(6deg) translateY(0) translateX(${sideHover === 'left' ? '-6px' : '0'})` : 'rotate(6deg) translateY(15px)',
+          opacity: !showFloatingLabels ? 0 : (sideHover === "right" ? 0 : 1),
+          transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transitionDelay: '0.6s'
+        }}>
           <Typography sx={{ fontSize: { md: '0.9rem', lg: '1.05rem' }, color: 'rgba(89, 69, 52, 0.75)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
             {hero.floatingLabels?.[5] || t.hero?.label6 || "Label 6"}
           </Typography>

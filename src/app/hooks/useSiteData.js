@@ -9,6 +9,9 @@ import {
   companyData,
   testimonialsData,
   corporateWebsitesData,
+  articlesData,
+  circularSectionsData,
+  contactPageData,
   journeyMapData
 } from "../data/siteData";
 
@@ -173,6 +176,49 @@ export function useSiteData() {
   };
 
   /**
+   * Get articles data with localized content
+   * @returns {Object} Articles data with current language content
+   */
+  const getArticlesData = () => {
+    return {
+      title: getLocalizedText(articlesData.title),
+      subtitle: getLocalizedText(articlesData.subtitle),
+      viewAll: getLocalizedText(articlesData.viewAll),
+      readMore: getLocalizedText(articlesData.readMore)
+    };
+  };
+
+  /**
+   * Get circular sections data with localized content
+   * @returns {Object} Circular sections data with current language content
+   */
+  const getCircularSectionsData = () => {
+    return {
+      sections: circularSectionsData.sections.map(section => ({
+        ...section,
+        label: getLocalizedText(section.label)
+      }))
+    };
+  };
+
+  /**
+   * Get contact page data with localized content
+   * @returns {Object} Contact page data with current language content
+   */
+  const getContactPageData = () => {
+    return {
+      title: getLocalizedText(contactPageData.title),
+      subtitle: getLocalizedText(contactPageData.subtitle),
+      services: getLocalizedText(contactPageData.services),
+      name: getLocalizedText(contactPageData.name),
+      phone: getLocalizedText(contactPageData.phone),
+      email: getLocalizedText(contactPageData.email),
+      submit: getLocalizedText(contactPageData.submit),
+      privacy: getLocalizedText(contactPageData.privacy)
+    };
+  };
+
+  /**
    * Get journey map data with localized content
    * @returns {Object} Journey map data with current language content
    */
@@ -208,6 +254,9 @@ export function useSiteData() {
     getCompanyData,
     getTestimonialsData,
     getCorporateWebsitesData,
+    getArticlesData,
+    getCircularSectionsData,
+    getContactPageData,
     getJourneyMapData,
     
     // Direct access to processed data
@@ -220,6 +269,9 @@ export function useSiteData() {
     companies: getCompanyData(),
     testimonials: getTestimonialsData(),
     corporateWebsites: getCorporateWebsitesData(),
+    articles: getArticlesData(),
+    circularSections: getCircularSectionsData(),
+    contactPage: getContactPageData(),
     journeyMap: getJourneyMapData()
   };
 }

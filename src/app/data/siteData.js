@@ -422,6 +422,104 @@ export const corporateWebsitesData = {
   ]
 };
 
+// Articles Data - مشاريعنا المميزة
+export const articlesData = {
+  title: {
+    en: "Our Featured Projects",
+    ar: "مشاريعنا المميزة"
+  },
+  subtitle: {
+    en: "Explore a collection of our distinguished works in architectural design and interior decoration",
+    ar: "استكشف مجموعة من أعمالنا المتميزة في التصميم المعماري والديكور الداخلي"
+  },
+  viewAll: {
+    en: "View All Projects",
+    ar: "عرض جميع المشاريع"
+  },
+  readMore: {
+    en: "Read More",
+    ar: "شاهد المزيد"
+  }
+};
+
+// Circular Sections Data - الأقسام الدائرية
+export const circularSectionsData = {
+  sections: [
+    {
+      id: 1,
+      icon: "whatsapp",
+      label: {
+        en: "Architectural Chat",
+        ar: "الدردشة المعمارية"
+      },
+      link: "/contact"
+    },
+    {
+      id: 2,
+      image: "/images/article img 2.jpg",
+      label: {
+        en: "Interior Design Basics Course",
+        ar: "دورة الأساسيات في التصميم الداخلي"
+      },
+      link: "/courses"
+    },
+    {
+      id: 3,
+      image: "/images/article img 1.jpg",
+      label: {
+        en: "Ja-Yanati Book",
+        ar: "كتاب جا-يناتي"
+      },
+      link: "/book"
+    },
+    {
+      id: 4,
+      image: "/images/article img 3.jpg",
+      label: {
+        en: "Main Health",
+        ar: "الصحة الرئيسية"
+      },
+      link: "/wellness"
+    }
+  ]
+};
+
+// Contact Page Data - صفحة التواصل
+export const contactPageData = {
+  title: {
+    en: "Book a Meeting",
+    ar: "احجز اجتماع"
+  },
+  subtitle: {
+    en: "with Eng. Ahmed Al-Mubayed",
+    ar: "مع م.أحمد المبيض"
+  },
+  services: {
+    en: "Planning . Design . Implementation . Consultations",
+    ar: "تخطيط . تصميم . تنفيذ . استشارات"
+  },
+  name: {
+    en: "Name",
+    ar: "الاسم"
+  },
+  phone: {
+    en: "Phone",
+    ar: "الهاتف"
+  },
+  email: {
+    en: "Email",
+    ar: "البريد الإلكتروني"
+  },
+  submit: {
+    en: "Book Now in 2 Minutes",
+    ar: "احجز الآن خلال دقيقتين"
+  },
+  privacy: {
+    en: "By clicking, you implicitly agree that we contact you via email for information and updates. The information provided will be used securely.",
+    ar: "بالنقر، وافقت ضمنياً على أن نتواصل معك عبر البريد الإلكتروني للحصول على المعلومات والتحديثات. سيتم استخدام المعلومات المقدمة بشكل آمن"
+  }
+};
+
 // Journey Map Data - خارطة رحلتك مع أحمد المبيض
 export const journeyMapData = {
   title: {
@@ -652,6 +750,9 @@ const allSiteData = {
   companyData,
   testimonialsData,
   corporateWebsitesData,
+  articlesData,
+  circularSectionsData,
+  contactPageData,
   journeyMapData
 };
 

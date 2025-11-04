@@ -4,6 +4,7 @@ import CTACards from "./component/CTACards";
 import About from "./component/About";
 import Experience from "./component/Experience";
 import Stats from "./component/Stats";
+import Articles from "./component/Articles";
 import BeforeAfter from "./component/BeforeAfter";
 import Testimonial from "./component/Testimonial";
 import Reviews from "./component/Reviews";
@@ -20,6 +21,7 @@ export default function Home() {
          <Journey />
    <Partners />
       <Stats />
+      <Articles />
       <BeforeAfter />
       <Testimonial />
         <Experience />
