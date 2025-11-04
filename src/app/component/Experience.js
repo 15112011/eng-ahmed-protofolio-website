@@ -2,24 +2,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Box, Typography, Button } from "@mui/material";
-import { useLanguage } from "../hooks/useLanguage";
 import ar from "../locales/ar.json";
 import en from "../locales/en.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-
+import { useLanguage } from "../hooks/useLanguage";
+import { processSiteData } from "../data/siteDataProcessor";
 export default function Experience() {
   const { language } = useLanguage();
   const t = language === "ar" ? ar : en;
+  const { experience } = processSiteData(language);
 
-  const stats = [
-    { label: t.experience.stat1, value: "100%" },
-    { label: t.experience.stat2, value: "500+" },
-    { label: t.experience.stat3, value: "1000+" },
-    { label: t.experience.stat4, value: "15+" },
-  ];
+  const stats = experience.stats;
 
-  const [titlePart, subPart] = t.experience.titleSub.split("||");
+  const [titlePart, subPart] = experience.titleSub.split("||");
 
   return (
     <Box

@@ -2,9 +2,7 @@
 import Link from "next/link";
 import { Box, Typography, Button } from "@mui/material";
 import { useLanguage } from "../hooks/useLanguage";
-import { useSiteData } from "../hooks/useSiteData";
-import ar from "../locales/ar.json";
-import en from "../locales/en.json";
+import { processSiteData } from "../data/siteDataProcessor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,13 +14,12 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
  */
 export default function Testimonial() {
   const { language } = useLanguage();
-  const t = language === "ar" ? ar : en; // Fallback to locale files
-  const { testimonials, ctaText } = useSiteData(); // Get data from fake backend
-  
+  const { testimonials } = processSiteData(language);
+    
   // Use fake backend data with fallback to locale files
-  const sectionSubtitle = testimonials.subtitle || t.testimonial?.subtitle || "Client Testimonial";
-  const mainQuote = testimonials.testimonials?.[0]?.review || t.testimonial?.title || "Great experience working together";
-  const buttonText = ctaText || t.testimonial?.cta || "Contact Us";
+  const sectionSubtitle = testimonials.subtitle;
+  const mainQuote = testimonials.testimonials[0].review;
+  const buttonText = testimonials.cta;
 
   return (
     <Box component="section" sx={{ width: '100%', py: { xs: 5, sm: 6, md: 8 }, overflow: 'hidden' }}>

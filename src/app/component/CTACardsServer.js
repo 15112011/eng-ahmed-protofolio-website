@@ -1,15 +1,22 @@
-"use client";
 import Link from "next/link";
 import { Box, Typography } from "@mui/material";
-import { useLanguage } from "../hooks/useLanguage";
 import Image from "next/image";
 import ar from "../locales/ar.json";
 import en from "../locales/en.json";
 import message from "../../../public/images/message.png"
 import star from "../../../public/images/star.png"
 
-export default function CTACards() {
-  const { language } = useLanguage();
+/**
+ * Server-Side CTACards Component - Call-to-action cards section
+ * 
+ * This is a server-side rendered version that accepts language as props
+ * instead of using client-side hooks for better SEO performance.
+ * 
+ * @param {Object} props - Component props
+ * @param {string} props.language - Current language ('ar' or 'en')
+ * @returns {JSX.Element} CTA cards section component
+ */
+export default function CTACardsServer({ language = 'ar' }) {
   const t = language === "ar" ? ar : en;
 
   const cards = [
@@ -24,7 +31,7 @@ export default function CTACards() {
     },
     {
       id: 2,
-      icon:star,
+      icon: star,
       title: language === "ar" ? "رؤية المهندس أحمد" : "Engineer Ahmed's Vision",
       description: language === "ar" 
         ? "يحول كل افكارك إلى تصاميم تعبر عن ذوقك بأسلوب احترافي" 
@@ -34,7 +41,7 @@ export default function CTACards() {
   ];
 
   return (
-    <Box component="section" sx={{ width: '94%',marginX:"auto", bgcolor: '#fff', py: { xs: 6, sm: 8, md: 10 } }}>
+    <Box component="section" sx={{ width: '94%', marginX: "auto", bgcolor: '#fff', py: { xs: 6, sm: 8, md: 10 } }}>
       <Box sx={{ maxWidth: '1400px', mx: 'auto', px: { xs: 1.4, sm: 2.2, md: 3 } }}>
         <Box sx={{ 
           display: 'grid', 
@@ -89,12 +96,12 @@ export default function CTACards() {
                   </Typography>
                   <Typography sx={{ fontSize: { xs: '1.75rem', sm: '2rem', md: '2.25rem' } }}>
                     <Image
-        src={card.icon} 
-        alt={card.title} 
-        width={60} 
-        height={60} 
-        style={{ objectFit: 'contain' }}
-      />
+                      src={card.icon} 
+                      alt={card.title} 
+                      width={60} 
+                      height={60} 
+                      style={{ objectFit: 'contain' }}
+                    />
                   </Typography>
                 </Box>
 

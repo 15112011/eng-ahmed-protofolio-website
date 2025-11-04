@@ -1,16 +1,15 @@
-import Image from "next/image";
 import Hero from "./component/Hero";
-import CTACards from "./component/CTACards";
 import About from "./component/About";
-import Experience from "./component/Experience";
-import Stats from "./component/Stats";
 import Articles from "./component/Articles";
 import BeforeAfter from "./component/BeforeAfter";
-import Testimonial from "./component/Testimonial";
-import Reviews from "./component/Reviews";
+import CTACards from "./component/CTACards";
+import Experience from "./component/Experience";
+import FAQ from "./component/FAQ";
 import Journey from "./component/Journey";
 import Partners from "./component/Partners";
-import FAQ from "./component/FAQ";
+import Reviews from "./component/Reviews";
+import Stats from "./component/Stats";
+import Testimonial from "./component/Testimonial";
 
 export default function Home() {
   return (
@@ -18,16 +17,14 @@ export default function Home() {
       <Hero />
       <CTACards />
       <About />
-         <Journey />
-   <Partners />
+      <Journey />
+      <Partners />
       <Stats />
       <Articles />
       <BeforeAfter />
       <Testimonial />
-        <Experience />
+      <Experience />
       <Reviews />
-     
-         
       <FAQ />
     </>
   );

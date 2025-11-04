@@ -1,9 +1,7 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Box, Typography } from "@mui/material";
-import { useLanguage } from "../hooks/useLanguage";
-import { useSiteData } from "../hooks/useSiteData";
+import { processSiteData } from "../data/siteDataProcessor";
 
 /**
  * CircularSections Component - 4 circular sections with icons and labels
@@ -16,9 +14,8 @@ import { useSiteData } from "../hooks/useSiteData";
  * 
  * @returns {JSX.Element} CircularSections component
  */
-export default function CircularSections() {
-  const { language } = useLanguage();
-  const { circularSections } = useSiteData();
+export default function CircularSections({ language = "ar" }) {
+  const { circularSections } = processSiteData(language);
 
   // Get sections data from fake database
   const sectionsData = circularSections?.sections || [];
@@ -130,7 +127,7 @@ export default function CircularSections() {
                   // Image for other sections
                   <Image
                     src={section.image}
-                    alt={section.label}
+                    alt={circularSections.sections[index].label}
                     fill
                     style={{ 
                       objectFit: 'cover',
@@ -154,7 +151,7 @@ export default function CircularSections() {
                   maxWidth: '150px'
                 }}
               >
-                {section.label}
+                {circularSections.sections[index].label}
               </Typography>
             </Box>
           ))}

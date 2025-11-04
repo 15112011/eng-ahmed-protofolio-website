@@ -150,6 +150,18 @@ export const aboutData = {
     en: "Engineer Ahmed Al-Mubayed, an architect specializing in interior design, has a creative and sustainable vision and has established himself as one of the leading architects and planners. He has extensive experience in architectural design, interior decoration, and urban planning, making him a trusted reference in the field. He offers his services to a diverse range of clients, from private homeowners to large companies, focusing on innovative designs that combine beauty, authenticity, and modernity.",
     ar: "المهندس أحمد المبيض، مهندس معماري متخصص في التصميم الداخلي، لديه رؤية إبداعية ومستدامة وقد رسخ نفسه كواحد من المهندسين المعماريين والمخططين الرائدين. لديه خبرة واسعة في التصميم المعماري والديكور الداخلي والتخطيط الحضري، مما يجعله مرجعاً موثوقاً في هذا المجال. يقدم خدماته لمجموعة متنوعة من العملاء، من أصحاب المنازل الخاصة إلى الشركات الكبيرة، مع التركيز على التصاميم المبتكرة التي تجمع بين الجمال والأصالة والحداثة."
   },
+  viewWork: {
+    en: "View Work",
+    ar: "عرض أعمالي"
+  },
+  cta: {
+    en: "Contact Us",
+    ar: "تواصل معنا"
+  },
+  followMe: {
+    en: "Follow me",
+    ar: "تابعني"
+  },
   badges: [
     {
       en: "Sustainable Solutions",
@@ -208,37 +220,35 @@ export const projectsData = {
 };
 
 export const companyData = {
+  title: {
+    en: "Our Partners in Success",
+    ar: "شركاؤنا في النجاح"
+  },
   // Founded Companies
   companies: [
     {
       id: 'dream-studio',
+      logo: "/dream stodiu.svg",
       name: "Dream Studio",
-      nameAr: "استوديو الأحلام",
+      nameAr: "دريم استوديو",
       description: {
-        en: "Specialized in architectural design and creative solutions",
-        ar: "متخصص في التصميم المعماري والحلول الإبداعية"
+        en: "High quality, diverse designs, everything is accurate",
+        ar: "جودة عالية ، تنوع فخم تصميمات تناسم كل ذوق"
       },
-      focus: "Design"
+      focus: "Design",
+      link: "/contact"
     },
     {
-      id: 'decor-stores', 
-      name: "Decor Stores",
-      nameAr: "متاجر الديكور",
+      id: 'dorisco',
+      logo: "/images/دوريسكو.png",
+      name: "Dorisco",
+      nameAr: "دوريسكو",
       description: {
-        en: "Premium furniture and interior decoration solutions",
-        ar: "أثاث فاخر وحلول ديكور داخلي"
+        en: "Interior design implementation, creative touches, modern materials",
+        ar: "تصميم داخلي فاخر تنفيذ احتراف ، لمسات إبداعية مواد عصرية"
       },
-      focus: "Furniture"
-    },
-    {
-      id: 'vfx-studio',
-      name: "VFX Studio", 
-      nameAr: "استوديو المؤثرات البصرية",
-      description: {
-        en: "Visual effects and 3D architectural visualization",
-        ar: "مؤثرات بصرية وتصور معماري ثلاثي الأبعاد"
-      },
-      focus: "Visual Effects"
+      focus: "Interior Design",
+      link: "/contact"
     }
   ]
 };
@@ -740,6 +750,31 @@ export const journeyMapData = {
 };
 
 // Export all data as a single object for easy importing
+export const experienceData = {
+  stats: {
+    stat1: {
+      en: "Client Satisfaction",
+      ar: "رضا العملاء"
+    },
+    stat2: {
+      en: "Projects Completed",
+      ar: "المشاريع المنجزة"
+    },
+    stat3: {
+      en: "Consultations Provided",
+      ar: "الاستشارات المقدمة"
+    },
+    stat4: {
+      en: "Years of Experience",
+      ar: "سنوات الخبرة"
+    }
+  },
+  titleSub: {
+    en: "A Legacy of Excellence || Over 15 Years of Architectural Innovation",
+    ar: "إرث من التميز || أكثر من 15 عامًا من الابتكار المعماري"
+  }
+};
+
 const allSiteData = {
   siteConfig,
   navigationData,

@@ -170,7 +170,7 @@ export default function Hero() {
 
   return (
     // Main Hero Section Container - Full viewport height on desktop, auto on mobile
-    <Box component="section" sx={{ position: 'relative', width: '100%', height: { xs: 'auto', md: '70vh' }, overflow: 'hidden', minHeight: { xs: '400px', md: '70vh' }, mt: { xs: '80px', md: '90px' } }}>
+    <Box component="section" sx={{ position: 'relative', width: '100%', height: { xs: 'auto', md: '70vh' }, overflow: 'hidden', minHeight: { xs: 'auto', md: '70vh' }, mt: { xs: '64px', md: '70px' } }}>
       
       {/* Background Layer - Scaled and overlaid background image */}
       <Box sx={{ position: 'absolute', inset: 0, zIndex: 0 }}>
@@ -191,12 +191,12 @@ export default function Hero() {
         onMouseLeave={handleMouseLeave}
         sx={{ position: 'relative', height: { xs: 'auto', md: '100%' }, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: { xs: 'flex-start', md: 'center' }, justifyContent: 'center' }}>
         {/* Mobile Layout - Enhanced with gradient background */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' }, position: 'relative', width: '100%', alignItems: 'flex-end', justifyContent: 'center', pb: 0, pt: 0 }}>
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, position: 'relative', width: '100%', alignItems: 'flex-end', justifyContent: 'center', height: { xs: '50vh', sm: '55vh' } }}>
           {/* Gradient Background Overlay */}
           <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4), transparent)', zIndex: 0 }} />
           
           {/* Compact Image - Mobile */}
-          <Box sx={{ position: 'relative', width: { xs: '225px', sm: '315px' }, height: { xs: '225px', sm: '315px' }, zIndex: 10, mb: 0 }}>
+          <Box sx={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: { xs: '100%', sm: '100%' }, height: { xs: '100%', sm: '100%' }, maxWidth: '500px', zIndex: 10 }}>
             <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
               {/* Base Image - Mobile - Slides in from left */}
               <Box
@@ -251,13 +251,13 @@ export default function Hero() {
             href="/contact"
             sx={{
               position: 'absolute',
-              left: { xs: 4, sm: 12 },
-              top: 'auto',
-              bottom: { xs: '42%', sm: '38%' },
-              transform: { xs: 'translateY(-50%)', sm: 'none' },
+              left: { xs: '8%', sm: '10%' },
+              bottom: { xs: '40%', sm: '43%' },
               zIndex: 20,
               cursor: 'pointer',
               textDecoration: 'none',
+              opacity: showText ? 1 : 0,
+              transition: 'opacity 0.8s ease-in',
               '&:hover .text-layer': { transform: 'scale(1.05)' },
             }}
           >
@@ -267,7 +267,7 @@ export default function Hero() {
                 className="text-layer"
                 sx={{
                   position: 'relative',
-                  fontSize: { xs: '1.25rem', sm: '1.75rem' },
+                  fontSize: { xs: '1.75rem', sm: '2.25rem' },
                   fontWeight: 700,
                   color: '#594534',
                   fontFamily: 'var(--font-cairo)',
@@ -285,14 +285,14 @@ export default function Hero() {
             href="/contact"
             sx={{
               position: 'absolute',
-              right: { xs: 4, sm: 12 },
-              top: 'auto',
-              bottom: { xs: '42%', sm: '38%' },
-              transform: { xs: 'translateY(-50%)', sm: 'none' },
+              right: { xs: '8%', sm: '10%' },
+              bottom: { xs: '40%', sm: '43%' },
               zIndex: 20,
               textAlign: 'right',
               cursor: 'pointer',
               textDecoration: 'none',
+              opacity: showText ? 1 : 0,
+              transition: 'opacity 0.8s ease-in',
               '&:hover .text-layer': { transform: 'scale(1.05)' },
             }}
           >
@@ -302,7 +302,7 @@ export default function Hero() {
                 className="text-layer"
                 sx={{
                   position: 'relative',
-                  fontSize: { xs: '1.25rem', sm: '1.75rem' },
+                  fontSize: { xs: '1.75rem', sm: '2.25rem' },
                   fontWeight: 700,
                   color: '#594534',
                   fontFamily: 'var(--font-cairo)',
@@ -324,39 +324,39 @@ export default function Hero() {
             </Box>
           </Box>
 
-          {/* Mobile Floating Labels - Around shoulders */}
-          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '8%', bottom: { xs: '35%', sm: '32%' }, zIndex: 15 }}>
-            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+          {/* Mobile Floating Labels - Around shoulders - Desktop style with animation */}
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '5%', bottom: '33%', zIndex: 15, opacity: showFloatingLabels ? 1 : 0, transition: 'opacity 0.8s ease-in' }}>
+            <Typography sx={{ fontSize: '0.75rem', color: 'rgba(89, 69, 52, 0.7)', fontWeight: 500, fontFamily: 'var(--font-cairo)', bgcolor: 'rgba(255, 255, 255, 0.8)', px: 1, py: 0.5, borderRadius: 1 }}>
               {hero.floatingLabels?.[0] || t.hero?.label1 || "Label 1"}
             </Typography>
           </Box>
 
-          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '15%', bottom: { xs: '28%', sm: '26%' }, zIndex: 15 }}>
-            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '12%', bottom: '27%', zIndex: 15, opacity: showFloatingLabels ? 1 : 0, transition: 'opacity 0.8s ease-in 0.2s' }}>
+            <Typography sx={{ fontSize: '0.75rem', color: 'rgba(89, 69, 52, 0.7)', fontWeight: 500, fontFamily: 'var(--font-cairo)', bgcolor: 'rgba(255, 255, 255, 0.8)', px: 1, py: 0.5, borderRadius: 1 }}>
               {hero.floatingLabels?.[1] || t.hero?.label2 || "Label 2"}
             </Typography>
           </Box>
 
-          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '5%', bottom: { xs: '22%', sm: '20%' }, zIndex: 15 }}>
-            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', right: '3%', bottom: '21%', zIndex: 15, opacity: showFloatingLabels ? 1 : 0, transition: 'opacity 0.8s ease-in 0.4s' }}>
+            <Typography sx={{ fontSize: '0.75rem', color: 'rgba(89, 69, 52, 0.7)', fontWeight: 500, fontFamily: 'var(--font-cairo)', bgcolor: 'rgba(255, 255, 255, 0.8)', px: 1, py: 0.5, borderRadius: 1 }}>
               {hero.floatingLabels?.[2] || t.hero?.label3 || "Label 3"}
             </Typography>
           </Box>
 
-          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '8%', bottom: { xs: '35%', sm: '32%' }, zIndex: 15 }}>
-            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '5%', bottom: '33%', zIndex: 15, opacity: showFloatingLabels ? 1 : 0, transition: 'opacity 0.8s ease-in' }}>
+            <Typography sx={{ fontSize: '0.75rem', color: 'rgba(89, 69, 52, 0.7)', fontWeight: 500, fontFamily: 'var(--font-cairo)', bgcolor: 'rgba(255, 255, 255, 0.8)', px: 1, py: 0.5, borderRadius: 1 }}>
               {hero.floatingLabels?.[3] || t.hero?.label4 || "Label 4"}
             </Typography>
           </Box>
 
-          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '12%', bottom: { xs: '28%', sm: '26%' }, zIndex: 15 }}>
-            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '12%', bottom: '27%', zIndex: 15, opacity: showFloatingLabels ? 1 : 0, transition: 'opacity 0.8s ease-in 0.2s' }}>
+            <Typography sx={{ fontSize: '0.75rem', color: 'rgba(89, 69, 52, 0.7)', fontWeight: 500, fontFamily: 'var(--font-cairo)', bgcolor: 'rgba(255, 255, 255, 0.8)', px: 1, py: 0.5, borderRadius: 1 }}>
               {hero.floatingLabels?.[4] || t.hero?.label5 || "Label 5"}
             </Typography>
           </Box>
 
-          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '18%', bottom: { xs: '22%', sm: '20%' }, zIndex: 15 }}>
-            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(89, 69, 52, 0.6)', fontWeight: 400, fontFamily: 'var(--font-cairo)' }}>
+          <Box sx={{ display: { xs: 'block', md: 'none' }, position: 'absolute', left: '3%', bottom: '21%', zIndex: 15, opacity: showFloatingLabels ? 1 : 0, transition: 'opacity 0.8s ease-in 0.4s' }}>
+            <Typography sx={{ fontSize: '0.75rem', color: 'rgba(89, 69, 52, 0.7)', fontWeight: 500, fontFamily: 'var(--font-cairo)', bgcolor: 'rgba(255, 255, 255, 0.8)', px: 1, py: 0.5, borderRadius: 1 }}>
               {hero.floatingLabels?.[5] || t.hero?.label6 || "Label 6"}
             </Typography>
           </Box>

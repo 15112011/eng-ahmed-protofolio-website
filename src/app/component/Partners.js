@@ -3,15 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Box, Typography, Button } from "@mui/material";
 import { useLanguage } from "../hooks/useLanguage";
-import ar from "../locales/ar.json";
-import en from "../locales/en.json";
-import { partners as partnersData } from "../data/content";
+import { processSiteData } from "../data/siteDataProcessor";
  
 
 export default function Partners() {
   const { language } = useLanguage();
-  const t = language === "ar" ? ar : en;
-  const partners = partnersData[language] || partnersData.ar;
+  const { companies: partnersData } = processSiteData(language);
 
   return (
     <Box component="section" sx={{ width: '95%', py: { xs: 6, sm: 8, md: 10 },marginX:'auto' }}>
@@ -19,13 +16,13 @@ export default function Partners() {
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: { xs: 5, sm: 6, md: 8 } }}>
           <Typography variant="h2" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.5rem' }, fontWeight: 600, color: '#594534', mb: 2, fontFamily: 'var(--font-cairo)' }}>
-            {t.partners.title}
+            {partnersData.title}
           </Typography>
         </Box>
 
         {/* Partners Grid */}
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: { xs: 2, sm: 3 }, maxWidth: '1152px', mx: 'auto' }}>
-          {partners.map((partner, index) => (
+          {partnersData.companies.map((partner, index) => (
             <Box
               key={index}
               sx={{

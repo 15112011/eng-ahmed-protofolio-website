@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Box, Typography } from "@mui/material";
 import { useLanguage } from "../hooks/useLanguage";
-import { useSiteData } from "../hooks/useSiteData";
+import { processSiteData } from "../data/siteDataProcessor";
 
 /**
  * Articles Component - Showcases featured articles/projects
@@ -18,32 +18,38 @@ import { useSiteData } from "../hooks/useSiteData";
  */
 export default function Articles() {
   const { language } = useLanguage();
-  const { articles } = useSiteData();
+  const { articles } = processSiteData(language);
 
   // Article data with the provided images
   const articlesData = [
     {
       id: 1,
       image: "/images/article img 1.jpg",
-      category: "سكني",
-      title: "صممت شقة فاخرة في دبامك هايت مع التركيز على التفاصيل المعمارية والفخامة",
-      author: "شاهد المزيد",
+      category: language === 'ar' ? "سكني" : "Residential",
+      title: language === 'ar' 
+        ? "صممت شقة فاخرة في دبامك هايت مع التركيز على التفاصيل المعمارية والفخامة"
+        : "Designed a luxury apartment in Damac Heights with focus on architectural details and elegance",
+      author: language === 'ar' ? "شاهد المزيد" : "Read More",
       link: "/articles/luxury-apartment"
     },
     {
       id: 2,
       image: "/images/article img 2.jpg", 
-      category: "تجاري",
-      title: "صممت مشروع صالة انتظار مبتكراً يجمع بين الجمالية والوظيفية لتجربة مريحة وفاخرة",
-      author: "شاهد المزيد",
+      category: language === 'ar' ? "تجاري" : "Commercial",
+      title: language === 'ar'
+        ? "صممت مشروع صالة انتظار مبتكراً يجمع بين الجمالية والوظيفية لتجربة مريحة وفاخرة"
+        : "Designed an innovative waiting lounge project combining aesthetics and functionality for a comfortable and luxurious experience",
+      author: language === 'ar' ? "شاهد المزيد" : "Read More",
       link: "/articles/waiting-lounge"
     },
     {
       id: 3,
       image: "/images/article img 3.jpg",
-      category: "تجاري", 
-      title: "صممت مركز تجميل عصرياً يوازن بين الراحة والفخامة مع مراعاة تدفق الحركة بدقة هندسية",
-      author: "شاهد المزيد",
+      category: language === 'ar' ? "تجاري" : "Commercial", 
+      title: language === 'ar'
+        ? "صممت مركز تجميل عصرياً يوازن بين الراحة والفخامة مع مراعاة تدفق الحركة بدقة هندسية"
+        : "Designed a modern beauty center balancing comfort and luxury with precise engineering flow",
+      author: language === 'ar' ? "شاهد المزيد" : "Read More",
       link: "/articles/beauty-center"
     }
   ];
@@ -65,7 +71,7 @@ export default function Articles() {
               mb: 2
             }}
           >
-            {articles?.title}
+            {articles.title}
           </Typography>
           <Typography sx={{ 
             fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' }, 
@@ -74,7 +80,7 @@ export default function Articles() {
             maxWidth: '600px',
             mx: 'auto'
           }}>
-            {articles?.subtitle}
+            {articles.subtitle}
           </Typography>
         </Box>
 
@@ -198,7 +204,7 @@ export default function Articles() {
                       fontWeight: 400,
                       fontFamily: 'var(--font-cairo)'
                     }}>
-                      {articles?.readMore}
+                      {articles.readMore}
                     </Typography>
                     {/* Left Arrow */}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

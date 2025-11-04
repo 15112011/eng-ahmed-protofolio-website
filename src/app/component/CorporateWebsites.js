@@ -1,4 +1,3 @@
-"use client";
 import { Box, Typography, Card, CardContent, CardMedia, Chip, Button } from "@mui/material";
 import { useSiteData } from "../hooks/useSiteData";
 import Link from "next/link";

@@ -1,4 +1,3 @@
-"use client";
 import { Box, Typography, Card, CardContent, Rating, Avatar } from "@mui/material";
 import { useSiteData } from "../hooks/useSiteData";
 

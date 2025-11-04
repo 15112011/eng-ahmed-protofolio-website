@@ -82,7 +82,7 @@ export default function Navbar() {
   return (
     <>
     <AppBar position="static" color="white" elevation={1} suppressHydrationWarning>
-      <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 3, md: 8 }, py: 2 }} suppressHydrationWarning>
+      <Toolbar sx={{ justifyContent: 'space-between', px: { xs: 3, md: 8 }, py: 2 }}>
         {/* Logo */}
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1 }}>
           <Image
@@ -95,7 +95,7 @@ export default function Navbar() {
         </Box>
 
       {/* روابط سطح المكتب */}
-      <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 3, pr: 1 }}>
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 3, pr: 1 }} suppressHydrationWarning>
         <Button
           component={Link}
           href="/"
@@ -108,6 +108,7 @@ export default function Navbar() {
             '&:hover': { bgcolor: '#F3EEE9' },
             textTransform: 'none',
           }}
+          suppressHydrationWarning
         >
           {t.home}
         </Button>
@@ -124,6 +125,7 @@ export default function Navbar() {
             '&:hover': { bgcolor: '#F3EEE9' },
             textTransform: 'none',
           }}
+          suppressHydrationWarning
         >
           {t.projects}
         </Button>
@@ -140,6 +142,7 @@ export default function Navbar() {
             '&:hover': { bgcolor: '#F3EEE9' },
             textTransform: 'none',
           }}
+          suppressHydrationWarning
         >
           {t.contact}
         </Button>
@@ -150,6 +153,7 @@ export default function Navbar() {
           startIcon={<Languages size={20} />}
           endIcon={<KeyboardArrowDownIcon sx={{ transform: langMenuOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />}
           sx={{ color: 'primary.main', minWidth: 'auto', textTransform: 'none' }}
+          suppressHydrationWarning
         >
           {language === "en" ? "EN" : "AR"}
         </Button>

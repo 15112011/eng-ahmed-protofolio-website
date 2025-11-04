@@ -3,22 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Box, Typography, Button, IconButton } from "@mui/material";
 import { useLanguage } from "../hooks/useLanguage";
-import ar from "../locales/ar.json";
-import en from "../locales/en.json";
+import { processSiteData } from "../data/siteDataProcessor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 export default function About() {
   const { language } = useLanguage();
-  const t = language === "ar" ? ar : en;
+  const { about } = processSiteData(language);
 
   // Floating badges data
-  const badges = [
-    { text: "...", position: { top: '15%', left: '10%' }, size: 'small' },
-    { text: "🛡️", position: { top: '20%', right: '15%' }, size: 'large', hasGlow: true },
-    { text: "حلول مستدامة 😊", position: { bottom: '35%', left: '5%' }, size: 'medium' },
-    { text: "ابتكار غير محدود 💡", position: { bottom: '30%', right: '10%' }, size: 'medium' },
-  ];
-
+  
   return (
     <Box component="section" sx={{ width: '94%', py: { xs: 6, sm: 8, md: 12 }, position: 'relative', overflow: 'visible' }}>
       <Box sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 3 } }}>
@@ -26,11 +19,11 @@ export default function About() {
           {/* Left Side - Content */}
           <Box sx={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: { xs: 2, sm: 3 }, order: { xs: 2, lg: 1 }, zIndex: 30 }}>
             <Typography variant="h2" sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem' }, fontWeight: 700, color: '#594534', lineHeight: 1.2, fontFamily: 'var(--font-cairo)' }}>
-              {t.about.title}
+              {about.title}
             </Typography>
             
             <Typography sx={{ fontSize: { xs: '0.8rem', sm: '1rem' }, color: 'rgba(89, 69, 52, 0.8)', lineHeight: 1.6 }}>
-              {t.about.description}
+              {about.description}
             </Typography>
 
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: { xs: 1.5, sm: 2 }, justifyContent: 'flex-end', alignItems: 'center', pt: 2 }}>
@@ -56,7 +49,7 @@ export default function About() {
                   fontWeight: 500,
                 }}
               >
-                {t.about.viewWork}
+                {about.viewWork}
               </Button>
               <Button
                 component={Link}
@@ -82,7 +75,7 @@ export default function About() {
                 {/* <Box component="svg" sx={{ width: { xs: 16, sm: 20 }, height: { xs: 16, sm: 20 } }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </Box> */}
-                <span>{t.about.cta}</span>
+                <span>{about.cta}</span>
               </Button>
               
            
@@ -142,7 +135,7 @@ export default function About() {
          
       }}
     >
-      {t.about.followMe}
+      {about.followMe}
     </Typography>
   </Box>
 </Box>
@@ -259,9 +252,8 @@ export default function About() {
                   animation: 'float 4s ease-in-out infinite',
                 }}
               >
-                <Typography sx={{ fontSize: '1rem', fontWeight: 500, color: '#594534' }}>حلول مستدامة</Typography>
-                <Typography sx={{ fontSize: '1.25rem' }}>😊</Typography>
-              </Box>
+                <Typography sx={{ fontSize: '1rem', fontWeight: 500, color: '#594534' }}>{about.badges[0]}</Typography>
+                              </Box>
               
               {/* Floating Badge - Bottom Right (Unlimited Innovation) */}
               <Box 
@@ -284,9 +276,8 @@ export default function About() {
                   animation: 'float 3.2s ease-in-out infinite',
                 }}
               >
-                <Typography sx={{ fontSize: '1rem', fontWeight: 500, color: '#594534' }}>ابتكار غير محدود</Typography>
-                <Typography sx={{ fontSize: '1.25rem' }}>💡</Typography>
-              </Box>
+                <Typography sx={{ fontSize: '1rem', fontWeight: 500, color: '#594534' }}>{about.badges[1]}</Typography>
+                              </Box>
             </Box>
           </Box>
         </Box>

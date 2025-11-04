@@ -1,31 +1,41 @@
-"use client";
 import Link from "next/link";
 import { Box, Typography, Button } from "@mui/material";
-import { useLanguage } from "../hooks/useLanguage";
-import { processSiteData } from "../data/siteDataProcessor";
+import { statsData } from "../data/siteData";
+import ar from "../locales/ar.json";
+import en from "../locales/en.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 /**
- * Stats Component - Displays key statistics and achievements
+ * Server-Side Stats Component - Displays key statistics and achievements
  * 
- * Features:
- * - Three-column statistics layout with visual separators
- * - Responsive design with flexible sizing
- * - Bilingual support for all text content
- * - Call-to-action button with hover effects
- * - Card-style design with shadow and rounded corners
+ * This is a server-side rendered version that accepts language as props
+ * instead of using client-side hooks for better SEO performance.
  * 
+ * @param {Object} props - Component props
+ * @param {string} props.language - Current language ('ar' or 'en')
  * @returns {JSX.Element} Statistics section component
  */
-export default function Stats() {
-  const { language } = useLanguage();
-  const { stats } = processSiteData(language);
+export default function StatsServer({ language = 'ar' }) {
+  const t = language === "ar" ? ar : en;
   
-  // Use fake backend data with fallback to locale files
-  const sectionTitle = stats.title;
-  const sectionSubtitle = stats.subtitle;
-  const ctaText = stats.cta;
+  // Helper function to get localized text
+  const getLocalizedText = (textObj) => {
+    if (typeof textObj === 'string') return textObj;
+    return textObj[language] || textObj.en || textObj.ar || '';
+  };
+
+  // Process stats data for current language
+  const processedStats = {
+    title: getLocalizedText(statsData.title),
+    subtitle: getLocalizedText(statsData.subtitle),
+    cta: getLocalizedText(statsData.cta),
+    statistics: statsData.statistics.map(stat => ({
+      ...stat,
+      value: language === 'ar' ? stat.valueAr : stat.value,
+      label: getLocalizedText(stat.label)
+    }))
+  };
 
   return (
     <Box component="section" sx={{ width: '95%', bgcolor: 'white', py: { xs: 8, sm: 10, md: 12 } }}>
@@ -33,35 +43,35 @@ export default function Stats() {
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: { xs: 6, sm: 8, md: 10 } }}>
           <Typography variant="h2" sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.8rem' }, fontWeight: 700, color: '#594534', mb: { xs: 2, sm: 3 }, fontFamily: 'var(--font-cairo)', lineHeight: 1.4 }}>
-            {sectionTitle}
+            {processedStats.title}
           </Typography>
           <Typography sx={{ fontSize: { xs: '0.9rem', sm: '1rem', md: '1.0625rem' }, color: 'rgba(89, 69, 52, 0.65)', maxWidth: '30rem', mx: 'auto', lineHeight: 1.7, px: 2 }}>
-            {sectionSubtitle}
+            {processedStats.subtitle}
           </Typography>
         </Box>
+        
         {/* Statistics Container - Three-column layout with card styling */}
         <Box
           sx={{
             display: 'flex',
-            flexWrap: 'nowrap', // Keep all stats in same row
+            flexWrap: 'nowrap',
             gap: { xs: 2, sm: 3 },
             mb: { xs: 6, sm: 8, md: 10 },
-            bgcolor: 'white', // Card background
-            borderRadius: 3, // Rounded corners
-            boxShadow: '0 6px 18px rgba(0,0,0,0.08)', // Subtle shadow
+            bgcolor: 'white',
+            borderRadius: 3,
+            boxShadow: '0 6px 18px rgba(0,0,0,0.08)',
             p: { xs: 1, sm: 2 },
           }}
         >
-          {/* Dynamically render statistics from processed data */}
-          {stats.statistics.map((stat, index) => (
+          {processedStats.statistics.map((stat, index) => (
             <Box
               key={stat.id}
               sx={{
-                flex: '1 1 0', // Equal space distribution
-                minWidth: 0, // Prevent overflow
+                flex: '1 1 0',
+                minWidth: 0,
                 textAlign: 'center',
                 p: { xs: 2, sm: 4 },
-                borderRight: index < stats.statistics.length - 1 ? '1px solid rgba(89, 69, 52, 0.08)' : 'none',
+                borderRight: index < processedStats.statistics.length - 1 ? '1px solid rgba(89, 69, 52, 0.08)' : 'none',
               }}
             >
               <Typography sx={{ fontSize: { xs: '1.3rem', sm: '2.2rem', md: '2.5rem' }, fontWeight: 700, color: '#594534', mb: 1 }}>
@@ -75,7 +85,7 @@ export default function Stats() {
           ))}
         </Box>
 
-        {/* Call-to-Action Button - Links to contact page with hover effects */}
+        {/* Call-to-Action Button */}
         <Box sx={{ textAlign: 'center' }}>
           <Button
             component={Link}
@@ -101,7 +111,7 @@ export default function Stats() {
             }}
           >
             <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '16px' }} />
-            <span>{ctaText}</span>
+            <span>{processedStats.cta}</span>
           </Button>
         </Box>
       </Box>
