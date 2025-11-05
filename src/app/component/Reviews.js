@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Box, Typography, Button } from "@mui/material";
 import { useLanguage } from "../hooks/useLanguage";
-import ar from "../locales/ar.json";
-import en from "../locales/en.json";
+import { processSiteData } from "../data/siteDataProcessor";
 import { reviews as reviewsData } from "../data/content";
 
 export default function Reviews() {
@@ -13,7 +12,7 @@ export default function Reviews() {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const { language } = useLanguage();
-  const t = language === "ar" ? ar : en;
+  const { testimonials } = processSiteData(language);
   const reviews = reviewsData[language] || reviewsData.ar;
 
   useEffect(() => {
@@ -64,15 +63,15 @@ export default function Reviews() {
   ];
 
   return (
-    <Box component="section" sx={{ width: "100%", py: { xs: 6, sm: 8, md: 10 }, position: "relative", overflow: "hidden" ,background:"#FAFAFA"}}>
+    <Box component="section" sx={{ width: "100%", py: { xs: 4, sm: 5, md: 6 }, position: "relative", overflow: "hidden" ,background:"#FAFAFA"}}>
       <Box sx={{ maxWidth: "1200px", mx: "auto", px: { xs: 2, sm: 3 } }}>
         {/* Header */}
         <Box sx={{ textAlign: "center", mb: 2 }}>
           <Typography sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" }, color: "rgba(89, 69, 52, 0.7)", mb: 1 }}>
-            {t.reviews.subtitle}
+            {testimonials.subtitle}
           </Typography>
           <Typography variant="h2" sx={{ fontSize: { xs: "1.875rem", sm: "2.25rem", md: "2.5rem" }, fontWeight: 700, color: "#594534", mb: { xs: 3, sm: 4 }, fontFamily: "var(--font-cairo)" }}>
-            {t.reviews.title}
+            {testimonials.title}
           </Typography>
           {/* CTA Button */}
           <Button
@@ -87,9 +86,7 @@ export default function Reviews() {
               px: { xs: 3.5, sm: 4.5 },
               py: { xs: 1.25, sm: 1.5 },
               borderRadius: "8px",
-              "&:hover": { bgcolor: "#6d5442", boxShadow: 3 },
-              transition: "all 0.3s",
-              mb: { xs: 4, sm: 5, md: 6 },
+              mb: { xs: 3, sm: 4, md: 5 },
               fontSize: { xs: "0.875rem", sm: "1rem" },
               textTransform: "none",
               fontWeight: 500,
@@ -98,7 +95,7 @@ export default function Reviews() {
             <Box component="svg" sx={{ width: { xs: 16, sm: 20 }, height: { xs: 16, sm: 20 } }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </Box>
-            <span>{t.reviews.cta}</span>
+            <span>{testimonials.cta}</span>
           </Button>
         </Box>
 
@@ -133,7 +130,6 @@ export default function Reviews() {
                 justifyContent: "center",
                 cursor: "pointer",
                 border: "none",
-                "&:hover": { transform: "scale(1.1)", boxShadow: "0 4px 12px rgba(255, 215, 0, 0.4)" },
               }}
             >
               <Box component="svg" sx={{ width: 24, height: 24, color: "#dfa40b" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,7 +151,6 @@ export default function Reviews() {
                 justifyContent: "center",
                 cursor: "pointer",
                 border: "none",
-                "&:hover": { transform: "scale(1.1)", boxShadow: "0 4px 12px rgba(255, 215, 0, 0.4)" },
               }}
             >
               <Box component="svg" sx={{ width: 24, height: 24, color: "#dfa40b" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -248,7 +243,7 @@ export default function Reviews() {
               key={index}
               component="button"
               onClick={() => setCurrentSlide(index)}
-              sx={{ width: 10, height: 10, borderRadius: "50%", bgcolor: currentSlide === index ? "#594534" : "rgba(89, 69, 52, 0.25)", border: "none", cursor: "pointer", transition: "all 0.3s", "&:hover": { bgcolor: "#594534" }, p: 0 }}
+              sx={{ width: 10, height: 10, borderRadius: "50%", bgcolor: currentSlide === index ? "#594534" : "rgba(89, 69, 52, 0.25)", border: "none", cursor: "pointer", p: 0 }}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

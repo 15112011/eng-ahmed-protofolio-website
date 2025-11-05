@@ -14,15 +14,13 @@ export default function Gallery() {
           {/* نسخة الشاشات الكبيرة */}
           <Box sx={{ display: { xs: 'none', lg: 'grid' }, gridTemplateColumns: '1fr 1.8fr 1fr', gap: 2, height: '80vh' }}>
             {/* العمود الأول */}
-            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4 }}>
+            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
               <Link href={`/projects/${projects[1].id}`}>
                 <Image
                   src={projects[1].mainImage}
                   alt={projects[1].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px', transition: 'transform 0.5s', cursor: 'pointer' }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
@@ -34,50 +32,42 @@ export default function Gallery() {
                   src={projects[5].mainImage}
                   alt={projects[5].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px', transition: 'transform 0.5s', cursor: 'pointer' }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
 
             {/* العمود الثالث */}
-            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4 }}>
+            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
               <Link href={`/projects/${projects[2].id}`}>
                 <Image
                   src={projects[2].mainImage}
                   alt={projects[2].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px', transition: 'transform 0.5s', cursor: 'pointer' }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
 
             {/* الصف الثاني */}
-            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4 }}>
+            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
               <Link href={`/projects/${projects[3].id}`}>
                 <Image
                   src={projects[3].mainImage}
                   alt={projects[3].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px', transition: 'transform 0.5s', cursor: 'pointer' }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
 
-            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4 }}>
+            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
               <Link href={`/projects/${projects[4].id}`}>
                 <Image
                   src={projects[4].mainImage}
                   alt={projects[4].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px', transition: 'transform 0.5s', cursor: 'pointer' }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
@@ -92,7 +82,7 @@ export default function Gallery() {
                   src={projects[1].mainImage}
                   alt={projects[1].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px' }}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
@@ -102,7 +92,7 @@ export default function Gallery() {
                   src={projects[2].mainImage}
                   alt={projects[2].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px' }}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
@@ -114,7 +104,7 @@ export default function Gallery() {
                   src={projects[5].mainImage}
                   alt={projects[5].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px' }}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
@@ -126,7 +116,7 @@ export default function Gallery() {
                   src={projects[3].mainImage}
                   alt={projects[3].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px' }}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
@@ -136,7 +126,7 @@ export default function Gallery() {
                   src={projects[4].mainImage}
                   alt={projects[4].name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px' }}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>
@@ -182,9 +172,7 @@ export default function Gallery() {
                   src={project.mainImage}
                   alt={project.name}
                   fill
-                  style={{ objectFit: 'cover', borderRadius: '16px', transition: 'transform 0.5s', cursor: 'pointer' }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  style={{ objectFit: 'cover', borderRadius: '8px' }}
                 />
               </Link>
             </Box>

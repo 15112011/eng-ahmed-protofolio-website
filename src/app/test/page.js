@@ -1,3 +1,4 @@
+"use client";
 import CircularSections from "../component/CircularSections";
 
 export default function TestPage() {

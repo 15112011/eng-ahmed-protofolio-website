@@ -29,8 +29,37 @@ export default function ContactPage() {
   };
 
   return (
-    <Box component="main" sx={{ minHeight: "100vh", bgcolor: "#f8f6f3", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <Box
+    <Box component="main" sx={{ minHeight: "100vh", bgcolor: "#f8f6f3" }}>
+      {/* Page Header */}
+      <Box sx={{ textAlign: "center", py: { xs: 4, md: 6 }, px: { xs: 2, md: 4 } }}>
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: { xs: "2rem", md: "2.5rem", lg: "3rem" },
+            fontWeight: 700,
+            color: "#594534",
+            mb: 2,
+            fontFamily: "var(--font-cairo)",
+          }}
+        >
+          {contactPage?.pageTitle}
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: "1rem", md: "1.125rem" },
+            color: "rgba(89, 69, 52, 0.7)",
+            maxWidth: "600px",
+            mx: "auto",
+            lineHeight: 1.6,
+          }}
+        >
+          {contactPage?.pageSubtitle}
+        </Typography>
+      </Box>
+
+      {/* Main Content */}
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", pb: { xs: 4, md: 6 } }}>
+        <Box
         sx={{
           position: "relative",
           display: "flex",
@@ -119,7 +148,7 @@ export default function ContactPage() {
               fontWeight: 700,
               color: "#594534",
               mb: 1.5,
-              textAlign: "right",
+              textAlign: "center",
               fontFamily: "var(--font-cairo)",
             }}
           >
@@ -132,7 +161,7 @@ export default function ContactPage() {
               fontSize: { xs: "1.25rem", md: "1.5rem" },
               color: "#594534",
               mb: 2,
-              textAlign: "right",
+              textAlign: "center",
               fontFamily: "var(--font-cairo)",
             }}
           >
@@ -144,7 +173,7 @@ export default function ContactPage() {
               fontSize: "0.9rem",
               color: "rgba(89, 69, 52, 0.6)",
               mb: 3,
-              textAlign: "right",
+              textAlign: "center",
             }}
           >
             {contactPage?.services}
@@ -299,6 +328,7 @@ export default function ContactPage() {
             </Typography>
           </Box>
         </Box>
+      </Box>
       </Box>
     </Box>
   );

@@ -170,7 +170,7 @@ export default function Hero() {
 
   return (
     // Main Hero Section Container - Full viewport height on desktop, auto on mobile
-    <Box component="section" sx={{ position: 'relative', width: '100%', height: { xs: 'auto', md: '70vh' }, overflow: 'hidden', minHeight: { xs: 'auto', md: '70vh' }, mt: { xs: '60px', md: '70px' } }}>
+    <Box component="section" sx={{ position: 'relative', width: '100%', height: { xs: 'auto', md: '70vh' }, overflow: 'hidden', minHeight: { xs: 'auto', md: '70vh' } }}>
       
       {/* Background Layer - Scaled and overlaid background image */}
       <Box sx={{ position: 'absolute', inset: 0, zIndex: 0 }}>

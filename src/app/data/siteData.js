@@ -236,7 +236,11 @@ export const companyData = {
         ar: "جودة عالية ، تنوع فخم تصميمات تناسم كل ذوق"
       },
       focus: "Design",
-      link: "/contact"
+      link: "/contact",
+      buttonText: {
+        en: "Learn More",
+        ar: "اعرف أكثر"
+      }
     },
     {
       id: 'dorisco',
@@ -248,7 +252,11 @@ export const companyData = {
         ar: "تصميم داخلي فاخر تنفيذ احتراف ، لمسات إبداعية مواد عصرية"
       },
       focus: "Interior Design",
-      link: "/contact"
+      link: "/contact",
+      buttonText: {
+        en: "Learn More",
+        ar: "اعرف أكثر"
+      }
     }
   ]
 };
@@ -260,8 +268,12 @@ export const testimonialsData = {
     ar: "عملاؤنا السعداء يشاركون تجربتهم معنا"
   },
   subtitle: {
-    en: "Discover what our clients say about their journey with Engineer Ahmed Al-Mubayed",
-    ar: "اكتشف ما يقوله عملاؤنا عن رحلتهم مع المهندس أحمد المبيض"
+    en: "3,500+ people expressed their satisfaction with Engineer Ahmed's designs",
+    ar: "3,500+ شخصاً عبّروا عن رضاهم عن تصاميم المهندس أحمد"
+  },
+  cta: {
+    en: "Book a Quick Session with Me",
+    ar: "احجز جلسة سريعة معي"
   },
   testimonials: [
     {
@@ -454,42 +466,50 @@ export const articlesData = {
 
 // Circular Sections Data - الأقسام الدائرية
 export const circularSectionsData = {
+  title: {
+    en: "Our Services & Quick Access",
+    ar: "خدماتنا والوصول السريع"
+  },
+  subtitle: {
+    en: "Discover our main services and get quick access to what you need",
+    ar: "اكتشف خدماتنا الرئيسية واحصل على وصول سريع لما تحتاجه"
+  },
   sections: [
     {
-      id: 1,
-      icon: "whatsapp",
+      id: 'whatsapp',
       label: {
-        en: "Architectural Chat",
-        ar: "الدردشة المعمارية"
+        en: 'WhatsApp',
+        ar: 'واتساب'
       },
-      link: "/contact"
+      icon: 'whatsapp',
+      link: 'https://wa.me/966123456789'
     },
     {
-      id: 2,
-      image: "/images/article img 2.jpg",
+      id: 'portfolio',
       label: {
-        en: "Interior Design Basics Course",
-        ar: "دورة الأساسيات في التصميم الداخلي"
+        en: 'Portfolio',
+        ar: 'معرض الأعمال'
       },
-      link: "/courses"
+      image: '/images/proj2.jpg',
+      link: '/projects'
     },
     {
-      id: 3,
-      image: "/images/article img 1.jpg",
+      id: 'consultation',
       label: {
-        en: "Ja-Yanati Book",
-        ar: "كتاب جا-يناتي"
+        en: 'Consultation',
+        ar: 'استشارة'
       },
-      link: "/book"
+      image: '/images/proj8.jpg',
+      link: '/contact'
     },
     {
-      id: 4,
-      image: "/images/article img 3.jpg",
+      id: 'services',
       label: {
-        en: "Main Health",
-        ar: "الصحة الرئيسية"
+        en: 'Services',
+        ar: 'الخدمات'
       },
-      link: "/wellness"
+      image: '/images/proj11.jpg',
+      link: '/services'
     }
   ]
 };
@@ -503,6 +523,14 @@ export const contactPageData = {
   subtitle: {
     en: "with Eng. Ahmed Al-Mubayed",
     ar: "مع م.أحمد المبيض"
+  },
+  pageTitle: {
+    en: "Contact Us - Book Your Consultation",
+    ar: "تواصل معنا - احجز استشارتك"
+  },
+  pageSubtitle: {
+    en: "Get professional architectural consultation and design services from Engineer Ahmed Al-Mubayed",
+    ar: "احصل على استشارة معمارية وخدمات تصميم احترافية من المهندس أحمد المبيض"
   },
   services: {
     en: "Planning . Design . Implementation . Consultations",
@@ -775,6 +803,18 @@ export const experienceData = {
   }
 };
 
+// FAQ Data - الأسئلة الأكثر شيوعاً
+export const faqData = {
+  title: {
+    en: "Frequently Asked Questions",
+    ar: "الأسئلة الأكثر شيوعاً"
+  },
+  subtitle: {
+    en: "Find answers to common questions about our services and process",
+    ar: "اعثر على إجابات للأسئلة الشائعة حول خدماتنا وعمليتنا"
+  }
+};
+
 const allSiteData = {
   siteConfig,
   navigationData,
@@ -788,7 +828,8 @@ const allSiteData = {
   articlesData,
   circularSectionsData,
   contactPageData,
-  journeyMapData
+  journeyMapData,
+  faqData
 };
 
 export default allSiteData;

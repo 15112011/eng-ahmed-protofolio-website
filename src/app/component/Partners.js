@@ -11,10 +11,10 @@ export default function Partners() {
   const { companies: partnersData } = processSiteData(language);
 
   return (
-    <Box component="section" sx={{ width: '95%', py: { xs: 6, sm: 8, md: 10 },marginX:'auto' }}>
+    <Box component="section" sx={{ width: '95%', py: { xs: 4, sm: 5, md: 6 },marginX:'auto' }}>
       <Box sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 3 } }}>
         {/* Header */}
-        <Box sx={{ textAlign: 'center', mb: { xs: 5, sm: 6, md: 8 } }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 3, sm: 4, md: 5 } }}>
           <Typography variant="h2" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.5rem' }, fontWeight: 600, color: '#594534', mb: 2, fontFamily: 'var(--font-cairo)' }}>
             {partnersData.title}
           </Typography>
@@ -27,12 +27,10 @@ export default function Partners() {
               key={index}
               sx={{
                 bgcolor: '#5A4A3A',
-                borderRadius: { xs: 1.2, sm: 2.2 },
+                borderRadius: { xs: 0.8, sm: 1.2 },
                 p: { xs: 3, sm: 4 },
                 color: 'white',
                 boxShadow: 3,
-                '&:hover': { boxShadow: 6 },
-                transition: 'all 0.3s',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -69,9 +67,7 @@ export default function Partners() {
                   fontWeight: 500,
                   px: { xs: 4.5, sm: 6 },
                   py: { xs: 1.25, sm: 1.5 },
-                  borderRadius: 1.2,
-                  '&:hover': { bgcolor: 'white' },
-                  transition: 'all 0.3s',
+                  borderRadius: 0.8,
                   fontSize: { xs: '0.875rem', sm: '1rem' },
                   textTransform: 'none',
                 }}

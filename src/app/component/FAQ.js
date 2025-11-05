@@ -14,11 +14,13 @@ import {
 import { Search } from "@mui/icons-material";
 import { faqs } from "../data/content";
 import { useLanguage } from "../hooks/useLanguage";
+import { processSiteData } from "../data/siteDataProcessor";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export default function FAQ() {
   const { language } = useLanguage();
+  const { faq } = processSiteData(language);
   const faqSections = faqs[language]?.[0] || faqs.ar[0];
 
   const [currentSection, setCurrentSection] = useState(0);
@@ -64,12 +66,22 @@ export default function FAQ() {
         width: "90%",
         marginX: "auto",
         bgcolor: "white",
-        py: { xs: 6, sm: 8, md: 10 },
+        py: { xs: 4, sm: 5, md: 6 },
         color: "#594534",
         direction: isArabic ? "rtl" : "ltr",
       }}
     >
       <Box sx={{ maxWidth: "64rem", mx: "auto", px: { xs: 2, sm: 3 } }}>
+        {/* Header */}
+        <Box sx={{ textAlign: "center", mb: { xs: 3, sm: 4, md: 5 } }}>
+          <Typography variant="h2" sx={{ fontSize: { xs: "1.875rem", sm: "2.25rem", md: "2.5rem" }, fontWeight: 700, color: "#594534", mb: 2, fontFamily: "var(--font-cairo)" }}>
+            {faq.title}
+          </Typography>
+          <Typography sx={{ fontSize: { xs: "0.875rem", sm: "1rem" }, color: "rgba(89, 69, 52, 0.7)", maxWidth: "600px", mx: "auto" }}>
+            {faq.subtitle}
+          </Typography>
+        </Box>
+
         {/* 🔍 شريط البحث والفلترة */}
         <Box
           sx={{

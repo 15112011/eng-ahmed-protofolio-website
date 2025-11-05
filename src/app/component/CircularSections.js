@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Box, Typography } from "@mui/material";
 import { processSiteData } from "../data/siteDataProcessor";
+import { useLanguage } from "../hooks/useLanguage";
 
 /**
  * CircularSections Component - 4 circular sections with icons and labels
@@ -14,7 +15,8 @@ import { processSiteData } from "../data/siteDataProcessor";
  * 
  * @returns {JSX.Element} CircularSections component
  */
-export default function CircularSections({ language = "ar" }) {
+export default function CircularSections() {
+  const { language } = useLanguage();
   const { circularSections } = processSiteData(language);
 
   // Get sections data from fake database
@@ -25,9 +27,7 @@ export default function CircularSections({ language = "ar" }) {
       width: '100%', 
       py: { xs: 8, sm: 10, md: 12 },
       bgcolor: '#f8f6f3',
-      minHeight: '70vh',
-      display: 'flex',
-      alignItems: 'center'
+      minHeight: '70vh'
     }}>
       <Box sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 3 }, width: '100%' }}>
         
@@ -54,27 +54,18 @@ export default function CircularSections({ language = "ar" }) {
                 gap: 3,
                 textDecoration: 'none',
                 cursor: 'pointer',
-                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                '&:hover': {
-                  transform: 'translateY(-8px)',
-                  '& .circle': {
-                    transform: 'scale(1.05)',
-                    boxShadow: '0 20px 40px rgba(139, 115, 85, 0.2)',
-                  }
-                }
               }}
             >
               {/* Circular Container */}
               <Box 
                 className="circle"
                 sx={{ 
-                  width: { xs: '140px', sm: '160px', md: '180px' },
-                  height: { xs: '140px', sm: '160px', md: '180px' },
+                  width: { xs: '180px', sm: '220px', md: '260px' },
+                  height: { xs: '180px', sm: '220px', md: '260px' },
                   position: 'relative',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 }}
               >
                 {/* SVG Frame (Bottom Layer) */}
@@ -95,10 +86,10 @@ export default function CircularSections({ language = "ar" }) {
                   />
                 </Box>
 
-                {/* Content Circle (Top Layer - slightly smaller) */}
+                {/* Content Circle (Top Layer - middle size) */}
                 <Box sx={{
-                  width: '80%',
-                  height: '80%',
+                  width: '87%',
+                  height: '87%',
                   borderRadius: '50%',
                   overflow: 'hidden',
                   position: 'relative',
@@ -112,8 +103,8 @@ export default function CircularSections({ language = "ar" }) {
                 {section.icon === "whatsapp" ? (
                   // WhatsApp Icon
                   <svg 
-                    width="50" 
-                    height="50" 
+                    width="70" 
+                    height="70" 
                     viewBox="0 0 24 24" 
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +122,7 @@ export default function CircularSections({ language = "ar" }) {
                     fill
                     style={{ 
                       objectFit: 'cover',
-                      filter: 'brightness(0.8)'
+                      filter: 'brightness(0.9) contrast(1.1)'
                     }}
                     priority={index < 2}
                   />
@@ -142,13 +133,13 @@ export default function CircularSections({ language = "ar" }) {
               {/* Label */}
               <Typography 
                 sx={{ 
-                  fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' }, 
+                  fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem' }, 
                   fontWeight: 500, 
                   color: '#594534', 
                   textAlign: 'center',
                   fontFamily: 'var(--font-cairo)',
                   lineHeight: 1.3,
-                  maxWidth: '150px'
+                  maxWidth: '180px'
                 }}
               >
                 {circularSections.sections[index].label}

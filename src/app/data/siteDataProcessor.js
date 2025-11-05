@@ -12,7 +12,8 @@ import {
   circularSectionsData,
   contactPageData,
   journeyMapData,
-  experienceData
+  experienceData,
+  faqData
 } from "./siteData";
 
 const getLocalizedText = (textObj, language) => {
@@ -91,7 +92,8 @@ export const processSiteData = (language) => {
       companies: companyData.companies.map(company => ({
         ...company,
         name: language === 'ar' ? company.nameAr : company.name,
-        description: getLocalizedText(company.description, language)
+        description: getLocalizedText(company.description, language),
+        buttonText: getLocalizedText(company.buttonText, language)
       }))
     };
   };
@@ -100,6 +102,7 @@ export const processSiteData = (language) => {
     return {
       title: getLocalizedText(testimonialsData.title, language),
       subtitle: getLocalizedText(testimonialsData.subtitle, language),
+      cta: getLocalizedText(testimonialsData.cta, language),
       testimonials: testimonialsData.testimonials.map(testimonial => ({
         ...testimonial,
         name: getLocalizedText(testimonial.name, language),
@@ -139,6 +142,8 @@ export const processSiteData = (language) => {
 
   const getCircularSections = () => {
     return {
+      title: getLocalizedText(circularSectionsData.title, language),
+      subtitle: getLocalizedText(circularSectionsData.subtitle, language),
       sections: circularSectionsData.sections.map(section => ({
         ...section,
         label: getLocalizedText(section.label, language)
@@ -150,6 +155,8 @@ export const processSiteData = (language) => {
     return {
       title: getLocalizedText(contactPageData.title, language),
       subtitle: getLocalizedText(contactPageData.subtitle, language),
+      pageTitle: getLocalizedText(contactPageData.pageTitle, language),
+      pageSubtitle: getLocalizedText(contactPageData.pageSubtitle, language),
       services: getLocalizedText(contactPageData.services, language),
       name: getLocalizedText(contactPageData.name, language),
       phone: getLocalizedText(contactPageData.phone, language),
@@ -187,6 +194,13 @@ export const processSiteData = (language) => {
     };
   };
 
+  const getFaq = () => {
+    return {
+      title: getLocalizedText(faqData.title, language),
+      subtitle: getLocalizedText(faqData.subtitle, language)
+    };
+  };
+
   return {
     siteConfig,
     navigation: getNav(),
@@ -202,6 +216,7 @@ export const processSiteData = (language) => {
     circularSections: getCircularSections(),
     contactPage: getContactPage(),
     journeyMap: getJourneyMap(),
-    experience: getExperience()
+    experience: getExperience(),
+    faq: getFaq()
   };
 };
